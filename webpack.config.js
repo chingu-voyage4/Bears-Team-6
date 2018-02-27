@@ -1,13 +1,13 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('webpack')
+require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'We Are Your Team'
-    })
+      title: 'We Are Your Team',
+    }),
   ],
   module: {
     rules: [
@@ -15,7 +15,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }
-    ]
-  }
+      },
+    ],
+  },
 }

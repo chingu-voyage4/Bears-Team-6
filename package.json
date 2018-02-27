@@ -35,16 +35,20 @@
     "react-router-dom": "^4.2.2",
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "socket.io-client": "^2.0.4",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
   "babel": {
+    "sourceMaps": true,
     "presets": [
-      "react",
       "env",
       "flow",
-      "jest"
-    ]
+      "jest",
+      "react"
+    ],
+    "plugins": []
   },
   "bugs": {
     "url": "https://github.com/chingu-voyage4/Bears-Team-6/issues"
@@ -53,6 +57,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.18.1",
     "eslint-config-airbnb": "^16.1.0",

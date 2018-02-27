@@ -7,7 +7,8 @@
     "import",
     "react",
     "flowtype",
-    "flowtype-errors"
+    "flowtype-errors",
+    "jest"
   ],
   "env": {
     "browser": true
