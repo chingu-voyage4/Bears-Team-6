@@ -6,6 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack -p --config=webpack.build.config.js",
+    "eslint": "eslint src",
+    "eslint:fix": "eslint src --fix",
+    "flow": "flow",
     "test": "jest",
     "testwatch": "jest --watch --coverageReporters=\"lcov\""
   },
@@ -37,12 +40,28 @@
   },
   "babel": {
     "presets": [
+      "react",
       "env",
-      "react"
+      "flow",
+      "jest"
     ]
   },
   "bugs": {
     "url": "https://github.com/chingu-voyage4/Bears-Team-6/issues"
   },
-  "homepage": "https://github.com/chingu-voyage4/Bears-Team-6#readme"
+  "homepage": "https://github.com/chingu-voyage4/Bears-Team-6#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-flowtype-errors": "^3.5.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "^21.12.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.66.0"
+  }
 }
