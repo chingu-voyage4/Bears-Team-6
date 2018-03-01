@@ -1,4 +1,3 @@
+// @flow
 
-import App from './App'
-
-export default App
+export { connected as App } from './App'
