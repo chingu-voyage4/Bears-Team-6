@@ -1,6 +1,5 @@
 
 // @flow
-
 import { takeLatest, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 import type { Saga } from '../../types'

@@ -37,11 +37,18 @@
   "babel": {
     "sourceMaps": true,
     "presets": [
-      "env",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "6"
+          }
+        }
+      ],
       "flow",
       "jest",
-      "react",
-      "stage-0"
+      "stage-0",
+      "react"
     ],
     "plugins": []
   },

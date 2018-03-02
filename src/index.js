@@ -18,14 +18,12 @@ import { reducers } from './redux/reducers'
 import { sagas } from './redux/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
-
 const store = createStore(reducers, applyMiddleware(sagaMiddleware))
-
+// const store = createStore(reducers)
 sagaMiddleware.run(sagas)
-
 const rootElement = document.createElement('div')
 
-document.body.appendChild(rootElement)
+if (document.body) document.body.appendChild(rootElement)
 
 render(
   <Provider store={store}>

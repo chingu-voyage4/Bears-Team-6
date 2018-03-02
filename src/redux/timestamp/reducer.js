@@ -11,7 +11,7 @@ const initialState: State = {
   ts: 0,
 }
 
-const setTimestamp = (state = initialState, { ts }) => ({ ts })
+const setTimestamp = (state = initialState, { ts }) => ({ ...state, ts })
 
 export const timestamp = (state: State = initialState, action: Action) => {
   switch (action.type) {

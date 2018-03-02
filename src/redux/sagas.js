@@ -1,5 +1,4 @@
 // @flow
-
 import { all } from 'redux-saga/effects'
 import type { Saga } from '../types'
 import { timestamp } from './timestamp/saga'
