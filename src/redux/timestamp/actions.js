@@ -5,15 +5,13 @@ export const Types = {
   SET_TIMESTAMP: 'SET_TIMESTAMP',
 }
 
-type SubscribeTimestampAction = {
-  type: 'SUBSCRIBE_TIMESTAMP',
-}
+export type SubscribeTimestampAction = { type: 'SUBSCRIBE_TIMESTAMP' }
 
 const subscribeTimestamp = (): SubscribeTimestampAction => ({
   type: Types.SUBSCRIBE_TIMESTAMP,
 })
 
-type SetTimestampAction = {
+export type SetTimestampAction = {
   type: 'SET_TIMESTAMP',
   ts: number,
 }
