@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --config=webpack.build.config.js",
+    "postinstall": "webpack --config=webpack.build.config.js",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
     "flow": "flow",
