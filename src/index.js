@@ -5,8 +5,8 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // redux
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 
 // router
@@ -17,9 +17,11 @@ import { App } from './components/App'
 import { reducers } from './redux/reducers'
 import { sagas } from './redux/sagas'
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(reducers, applyMiddleware(sagaMiddleware))
+
+sagaMiddleware.run(sagas)
 
 const rootElement = document.createElement('div')
 
@@ -29,7 +31,6 @@ render(
   <Provider store={store}>
     <Router>
       <App />
-      {/* <div/> */}
     </Router>
   </Provider>,
   rootElement,

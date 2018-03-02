@@ -2,11 +2,11 @@
 
 import React from 'react'
 import io from 'socket.io-client'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Creators } from '../../redux/timestamp/actions';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Creators } from '../../redux/timestamp/actions'
 
-export class App extends React.PureComponent {
+export class App extends React.PureComponent<*> {
   componentWillMount() {
     // const host = '' // use this when deployed on heroku
     // const host = 'http://localhost:3000' // local dev server
@@ -24,14 +24,14 @@ export class App extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({ timestamp: { ts } }) => ({ ts });
+const mapStateToProps = ({ timestamp: { ts } }) => ({ ts })
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       setTimestamp: Creators.setTimestamp,
     },
     dispatch,
-  );
+  )
 
-export const connected = connect(mapStateToProps, mapDispatchToProps)(App);
+export const connected = connect(mapStateToProps, mapDispatchToProps)(App)

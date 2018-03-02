@@ -1,8 +1,15 @@
 
+// @flow
 
-import { takeLatest, select, put, call, take, fork } from 'redux-saga/effects'
+import { takeLatest, call } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
+import type { Saga } from '../../types'
+import { Types } from './actions'
 
-import { Creators, Types } from './actions'
+function* subscribeTimestamp(route): Saga<void> {
+  yield call(delay, 777)
+}
 
 export const timestamp = [
+  takeLatest(Types.SUBSCRIBE_TIMESTAMP, subscribeTimestamp),
 ]
