@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "webpack -p --config=webpack.build.config.js",
+    "build": "webpack --config=webpack.build.config.js",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
     "flow": "flow",
@@ -31,17 +31,25 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "socket.io-client": "^2.0.4",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
   "babel": {
     "sourceMaps": true,
     "presets": [
-      "env",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "6"
+          }
+        }
+      ],
       "flow",
       "jest",
-      "react",
-      "stage-0"
+      "stage-0",
+      "react"
     ],
     "plugins": []
   },

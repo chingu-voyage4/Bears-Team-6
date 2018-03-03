@@ -1,7 +1,8 @@
 {
   "extends": [
     "airbnb",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended"
   ],
   "plugins": [
     "import",
@@ -14,11 +15,10 @@
     "browser": true
   },
   "rules": {
-    //Possible Errors
+
     "no-console": "error",
     "no-unexpected-multiline": "error",
 
-    // Best Practices
     "consistent-return": "off",
     "class-methods-use-this": "off",
     "dot-location": ["error", "property"],
@@ -28,7 +28,6 @@
     "no-unmodified-loop-condition": "error",
     "no-useless-call": "error",
 
-    // Variables
     "no-catch-shadow": "error",
     "no-label-var": "error",
     "no-shadow": "off",
@@ -36,14 +35,12 @@
     "no-use-before-define": ["error", "nofunc"],
     "no-unused-vars": ["error", { "args": "none" }],
 
-    // Stylistic Issues
     "linebreak-style": ["error", "unix"],
     "no-nested-ternary": "off",
     "no-plusplus": "off",
     "quote-props": ["error", "as-needed", { "numbers": true }],
     "semi": ["error", "never"],
 
-    // ECMAScript 6
     "arrow-parens": ["error", "always"],
     "no-confusing-arrow": "off",
     "constructor-super": "error",
@@ -54,7 +51,6 @@
     "prefer-template": "off",
     "prefer-spread": "error",
 
-    // React
     "react/no-danger": "error",
     "react/no-deprecated": "error",
     "react/no-did-mount-set-state": "error",
@@ -82,13 +78,11 @@
       ]
     }],
 
-    // import
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "import/prefer-default-export": "off",
     "import/no-mutable-exports": "off",
     "import/no-dynamic-require": "off",
 
-    // a11y
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/no-autofocus": "off",
     "jsx-a11y/label-has-for": "off",
@@ -96,9 +90,8 @@
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
 
-    // JSX
     "react/jsx-equals-spacing": "error",
-    //"react/jsx-indent": ["error", 2],
+
     "react/jsx-key": "error",
     "react/jsx-max-props-per-line": ["error", {"maximum": 5}],
     "react/jsx-no-duplicate-props": "error",
@@ -106,13 +99,11 @@
     "react/jsx-closing-bracket-location": ["error", {"selfClosing": "tag-aligned", "nonEmpty": "after-props"}],
     "react/jsx-wrap-multilines": "error",
 
-    // flow
     "flowtype/space-after-type-colon": ["error", "always"],
     "flowtype/space-before-type-colon": ["error", "never"],
     "flowtype/object-type-delimiter": ["error", "comma"],
     "flowtype-errors/show-errors": 2,
 
-    // coding styles
     "max-len": ["error", 120]
   }
 }
