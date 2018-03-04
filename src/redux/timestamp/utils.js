@@ -1,4 +1,4 @@
 // @flow
 
-export const isValidTimestamp = (x: number) => !Number.isNaN(x) && (x > 0)
+export const isValidTimestamp = (x?: any) => !!x && Number.isInteger(x) && (x > 0 ) && (x < Infinity)
 
