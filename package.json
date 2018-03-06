@@ -19,6 +19,7 @@
   "author": "789ers",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "clean-webpack-plugin": "^0.1.17",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.4.2",

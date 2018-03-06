@@ -69,6 +69,7 @@ function* listenConnectSaga(socket: Socket): Saga<void> {
  * Last one is working only if channel and server are working
  */
 export function* listenServerSaga(): Saga<void> {
+  quietLog('WTF')
   try {
     yield put(Creators.channelOn())
     yield put(Creators.serverOff())

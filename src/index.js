@@ -14,7 +14,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 // local
 import Reactotron from './ReactotronConfig'
-import { Timestamp } from './components/Timestamp'
+import { Registration } from './components/Registration'
 import { reducers, sagas } from './redux'
 
 const sagaMonitor = Reactotron.createSagaMonitor()
@@ -36,7 +36,7 @@ if (document.body) document.body.appendChild(rootElement)
 render(
   <Provider store={store}>
     <Router>
-      <Timestamp />
+      <Registration />
     </Router>
   </Provider>,
   rootElement,

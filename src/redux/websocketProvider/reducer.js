@@ -33,7 +33,8 @@ const serverOff = (state) => ({
   serverStatus: 'off',
 })
 
-export const websocketProvider = (state: State = initialState, action: Action = {}): State => {
+export const websocketProvider = (state?: State = initialState, action?: Action): State => {
+  if (!action || !action.type) return initialState
   switch (action.type) {
     case Types.CHANNEL_ON:
       return channelOn(state)
