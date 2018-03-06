@@ -12,7 +12,6 @@ import { isValidRegistrationData } from './utils'
 export function* submitRegistration(): Saga<void> {
   const { host } = config
   const { fullName, email, password } = yield select((state) => state.auth)
-  console.log({ fullName, email, password })
   try {
     // validate
     yield call(axios.post, `${host}/api/user`, { name: fullName, email, password })
