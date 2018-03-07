@@ -21,7 +21,8 @@ module.exports = {
         loaders: [
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-        ]
+        ],
+        use: ['style-loader', 'css-loader'],
       }
     ],
   },
