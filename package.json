@@ -90,8 +90,6 @@
     "reactotron-redux-saga": "^1.13.0",
     "redux-test-utils": "^0.2.2",
     "style-loader": "^0.20.2",
-    "stylefmt": "^6.0.0",
-    "stylefmt-loader": "^1.2.3",
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.1",
