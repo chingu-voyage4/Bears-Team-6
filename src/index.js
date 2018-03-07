@@ -14,7 +14,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 // local
 import Reactotron from './ReactotronConfig'
-import { Registration } from './components/Registration'
+import App from './App'
 import { reducers, sagas } from './redux'
 
 const sagaMonitor = Reactotron.createSagaMonitor()
@@ -36,7 +36,7 @@ if (document.body) document.body.appendChild(rootElement)
 render(
   <Provider store={store}>
     <Router>
-      <Registration />
+      <App />
     </Router>
   </Provider>,
   rootElement,
