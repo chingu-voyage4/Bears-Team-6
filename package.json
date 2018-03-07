@@ -8,10 +8,10 @@
     "build": "webpack --config=webpack.build.config.js",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
-    "fix": "run-s eslint:fix stylefmt",
+    "fix": "run-s eslint:fix stylelint:fix",
     "flow": "flow",
-    "stylefmt": "stylefmt -r src/**/*.css -c .stylelintrc",
     "stylelint": "stylelint src/**/*.css",
+    "stylelint:fix": "stylelint src/**/*.css --fix",
     "test": "jest",
     "testwatch": "jest --watch --coverageReporters=\"lcov\""
   },

@@ -12,6 +12,5 @@
     "declaration-property-value-whitelist": {
       "font-weight": ["inherit", "/^\\$font-weight-/"]
     }
-  },
-  "ignoreFiles": "./src/css/normalize.css"
+  }
 }
