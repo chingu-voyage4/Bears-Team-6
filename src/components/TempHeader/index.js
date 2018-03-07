@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from './styles.css'
 
 // Temp header created to navigate through the screens
 
 const Header = () => (
-  <header>
+  <header className={styles.root}>
     <nav>
       <ul>
         <li><Link to="/">Registration</Link></li>

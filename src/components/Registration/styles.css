@@ -1,0 +1,15 @@
+.navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation label {
+    display: flex;
+    width: 270px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.navigation button {
+    width: 150px;
+}
