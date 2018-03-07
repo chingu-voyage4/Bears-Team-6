@@ -16,9 +16,9 @@ export const Registration = ({
   password,
 }: Props) => (
   <div>
-    <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+    <label>Full Name<input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} /></label>
+    <label>Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /></label>
+    <label>Password<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
     <button onClick={submitRegistration}>submit</button>
   </div>)
 
