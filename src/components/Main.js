@@ -8,9 +8,9 @@ import { UserSettings } from './UserSettings'
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Registration}/>
-      <Route path='/login' component={Login}/>
-      <Route path='/usersettings' component={UserSettings}/>
+      <Route exact path="/" component={Registration} />
+      <Route path="/login" component={Login} />
+      <Route path="/usersettings" component={UserSettings} />
     </Switch>
   </main>
 )

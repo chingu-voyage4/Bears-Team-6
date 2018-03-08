@@ -12,7 +12,7 @@ const store = createMockStore(initialReduxState)
 describe('Timestamp', () => {
   expect(store.isActionTypeDispatched(ActionTypes.START_CHANNEL)).toBe(false)
   expect(store.isActionTypeDispatched(ActionTypes.SUBSCRIBE_TIMESTAMP)).toBe(false)
-  
+
   const wrapper = shallow(<Timestamp />, { context: { store } })
   it('renders as expected', () => {
     expect(wrapper.dive()).toMatchSnapshot()

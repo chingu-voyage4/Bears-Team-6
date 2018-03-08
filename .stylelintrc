@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "function-url-quotes": "never",
+    "block-no-empty": null,
+    "selector-pseudo-class-no-unknown": null,
+    "number-leading-zero": null,
+    "order/properties-alphabetical-order": true,
+    "declaration-property-value-whitelist": {
+      "font-weight": ["inherit", "/^\\$font-weight-/"]
+    }
+  }
+}
