@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators } from '../../redux'
-import styles from './styles.css'
+import styles from './styles.scss'
 import type { Props } from './types'
 
 export const Registration = ({
