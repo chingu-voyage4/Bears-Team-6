@@ -14,7 +14,7 @@ export function* submitRegistration(): Saga<void> {
   const { fullName, email, password } = yield select((state) => state.auth)
   try {
     // validate
-    yield call(axios.post, `${host}/api/user`, { name: fullName, email, password })
+    yield call(axios.post, `${host}/api/users`, { name: fullName, email, password })
     // put startChannel
   } catch (e) {
     quietLog(e)
