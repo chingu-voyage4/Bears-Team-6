@@ -2,7 +2,7 @@
 
 import io from 'socket.io-client'
 import { take, call, put, fork, race, cancelled, takeLatest } from 'redux-saga/effects'
-import { quietLog } from '../../utils'
+import { quietLog, devLog } from '../../utils'
 import config from '../../../application.config'
 import { ActionTypes, Creators } from '..'
 
@@ -69,7 +69,7 @@ function* listenConnectSaga(socket: Socket): Saga<void> {
  * Last one is working only if channel and server are working
  */
 export function* listenServerSaga(): Saga<void> {
-  quietLog('WTF')
+  devLog('Sockets started')
   try {
     yield put(Creators.channelOn())
     yield put(Creators.serverOff())
