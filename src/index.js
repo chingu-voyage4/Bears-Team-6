@@ -11,6 +11,8 @@ import { Provider } from 'react-redux'
 
 // router
 import { BrowserRouter as Router } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 // local
 import Reactotron from './ReactotronConfig'
@@ -19,12 +21,15 @@ import { reducers, sagas } from './redux'
 
 const sagaMonitor = Reactotron.createSagaMonitor()
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+const history = createHistory()
+const historyMiddleware = routerMiddleware(history)
 
 /* eslint-disable no-underscore-dangle */
 const store = Reactotron.createStore(
   reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(sagaMiddleware),
+  applyMiddleware(sagaMiddleware, historyMiddleware),
+  routerReducer,
 )
 /* eslint-enable */
 
@@ -35,9 +40,9 @@ if (document.body) document.body.appendChild(rootElement)
 
 render(
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <App />
-    </Router>
+    </ConnectedRouter>
   </Provider>,
   rootElement,
 )
