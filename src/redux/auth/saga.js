@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import { takeLatest, call, select, put } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import config from '../../../application.config'
 import type { Saga } from '../../types'
 import { ActionTypes, Creators } from '..'
@@ -18,6 +19,7 @@ export function* submitRegistration(): Saga<void> {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
       yield put(Creators.registrationApproved('Success!')) // instead should navigate to timestamp
+      yield put(push('/usersettings'))
       yield put(Creators.startChannel())
     } else {
       yield put(Creators.registrationRejected('You\'ve entered invalid registration data.'))
@@ -36,6 +38,7 @@ export function* submitLogin(): Saga<void> {
       const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
       yield put(Creators.loginApproved('Success!')) // instead should navigate to timestamp
+      yield put(push('/usersettings'))
       yield put(Creators.startChannel())
     } else {
       yield put(Creators.loginRejected('You\'ve entered invalid login data.'))
