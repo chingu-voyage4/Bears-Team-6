@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "clean-webpack-plugin": "^0.1.17",
+    "history": "^4.7.2",
     "html-webpack-plugin": "3.0.6",
     "jest": "^22.4.2",
     "react": "^16.1.1",
@@ -28,6 +29,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
