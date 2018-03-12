@@ -2,3 +2,4 @@ node_modules
 coverage
 .directory
 .idea
+yarn-error.log

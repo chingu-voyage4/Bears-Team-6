@@ -27,9 +27,8 @@ const registrationRejected = (errorMessage: string) => ({
   errorMessage,
 })
 
-const registrationApproved = (errorMessage: string) => ({
+const registrationApproved = () => ({
   type: Types.REGISTRATION_APPROVED,
-  errorMessage,
 })
 
 const loginRejected = (errorMessage: string) => ({
@@ -37,9 +36,8 @@ const loginRejected = (errorMessage: string) => ({
   errorMessage,
 })
 
-const loginApproved = (errorMessage: string) => ({
+const loginApproved = () => ({
   type: Types.LOGIN_APPROVED,
-  errorMessage,
 })
 
 const setPassword = (password: string) => ({
