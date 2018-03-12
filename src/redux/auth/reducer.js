@@ -6,15 +6,15 @@ type State = {
   fullName: string,
   email: string,
   password: string,
-  isRegistering: boolean,
+  isLoading: boolean,
   errorMessage: string,
 };
 
 const initialState: State = {
-  fullName: '',
-  email: '',
-  password: '',
-  isRegistering: false,
+  fullName: '', // lock if in progress
+  email: '', // lock if in progress
+  password: '', // lock if in progress
+  isLoading: false,
   errorMessage: '', // cleanup on every state change
 }
 
@@ -24,11 +24,22 @@ const submitLogin = (state) => ({ ...state, isLoading: true })
 
 const registrationRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
 
-const registrationApproved = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const registrationApproved = (state) => ({
+  ...state,
+  fullName: '',
+  email: '',
+  password: '',
+  isLoading: false,
+})
 
 const loginRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
 
-const loginApproved = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const loginApproved = (state) => ({
+  ...state,
+  email: '',
+  password: '',
+  isLoading: false,
+})
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
 

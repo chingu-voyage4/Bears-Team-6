@@ -13,14 +13,22 @@ export class Timestamp extends React.PureComponent<Props> {
   }
 
   render() {
+    const { serverStatus, channelStatus } = this.props
     return (
       <div>
-        <span>timestamp: {this.props.ts}</span>
+        <p>Server status: {serverStatus} (should be off until authorized)</p>
+        <p>Channel status: {channelStatus} (should be on)</p>
+        <p>timestamp: {this.props.ts}</p>
       </div>)
   }
 }
 
-const mapStateToProps = ({ timestamp: { ts } }) => ({ ts })
+const mapStateToProps = ({
+  timestamp: { ts },
+  websocketProvider: {
+    serverStatus, channelStatus,
+  },
+}) => ({ ts, serverStatus, channelStatus })
 
 const mapDispatchToProps = (dispatch) => {
   const { startChannel, subscribeTimestamp } = Creators

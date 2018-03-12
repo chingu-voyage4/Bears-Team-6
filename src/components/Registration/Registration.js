@@ -16,21 +16,22 @@ export const Registration = ({
   email,
   password,
   errorMessage,
+  isLoading,
 }: Props) => (
   <div className={styles.registration}>
     <span className={styles.error}>{errorMessage}</span>
-    <label>Full Name<input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} /></label>
-    <label>Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /></label>
-    <label>Password<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-    <button onClick={submitRegistration}>submit</button>
+    <label>Full Name<input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isLoading} /></label>
+    <label>Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} /></label>
+    <label>Password<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} /></label>
+    <button onClick={submitRegistration} disabled={isLoading}>submit</button>
   </div>)
 
 const mapStateToProps = ({
   auth: {
-    fullName, email, password, errorMessage,
+    fullName, email, password, errorMessage, isLoading,
   },
 }) => ({
-  fullName, email, password, errorMessage,
+  fullName, email, password, errorMessage, isLoading,
 })
 
 const mapDispatchToProps = (dispatch) => {
