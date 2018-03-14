@@ -1,4 +1,4 @@
 module.exports = {
-  "collectCoverage": true,
-  setupFiles: ["./jest.setup.js"],
-};
+  collectCoverage: true,
+  setupFiles: ['./jest.setup.js'],
+}

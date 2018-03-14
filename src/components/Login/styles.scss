@@ -1,0 +1,20 @@
+.error {
+  color: orangered;
+  padding: 10px 0;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+.login label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 270px;
+}
+
+.login button {
+  width: 150px;
+}

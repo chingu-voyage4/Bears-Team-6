@@ -1,0 +1,20 @@
+.error {
+  color: orangered;
+  padding: 10px 0;
+}
+
+.registration {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 270px;
+}
+
+.registration button {
+  width: 150px;
+}

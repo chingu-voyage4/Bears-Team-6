@@ -17,7 +17,8 @@ const setTimestamp = (state, { ts }) => ({ ...state, ts })
 
 const subscribeTimestamp = (state) => ({ ...state, isSubscribed: true })
 
-export const timestamp = (state: State = initialState, action: Action = {}): State => {
+export const timestamp = (state: State = initialState, action?: Action): State => {
+  if (!action || !action.type) return initialState
   switch (action.type) {
     case ActionTypes.SET_TIMESTAMP:
       return setTimestamp(state, action)
