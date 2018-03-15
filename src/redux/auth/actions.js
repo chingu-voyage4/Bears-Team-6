@@ -10,6 +10,7 @@ export const Types = {
   SUBMIT_LOGIN: 'SUBMIT_LOGIN',
   LOGIN_REJECTED: 'LOGIN_REJECTED',
   LOGIN_APPROVED: 'LOGIN_APPROVED',
+  LOGOUT: 'LOGOUT',
 }
 
 const setFullName = (fullName: string) => ({
@@ -53,6 +54,10 @@ const submitLogin = () => ({
   type: Types.SUBMIT_LOGIN,
 })
 
+const logout = () => ({
+  type: Types.LOGOUT,
+})
+
 
 export const Creators = {
   setFullName,
@@ -64,4 +69,5 @@ export const Creators = {
   registrationApproved,
   loginRejected,
   loginApproved,
+  logout,
 }
