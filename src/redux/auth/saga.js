@@ -56,6 +56,10 @@ export function* submitLogin(): Saga<void> {
   }
 }
 
+export function* Logout(): Saga<void> {
+  const
+}
+
 // todo: validate email server on the fly when changing email
 
 export const auth = [
