@@ -49,8 +49,11 @@ export function* submitLogin(): Saga<void> {
   }
 }
 
-export function* Logout(): Saga<void> {
-  const
+export function* logout(): Saga<void> {
+  const { host } = config
+  const res = yield call(axios.post, `${host}/api/auth/logout`)
+  devLog(res)
+  yield put(push('/login'))
 }
 
 // todo: validate email server on the fly when changing email
