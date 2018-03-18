@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { Helmet } from "react-helmet"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators } from '../../redux'
@@ -19,6 +20,9 @@ export const Registration = ({
   isLoading,
 }: Props) => (
   <div className={styles.registration}>
+    <Helmet>
+      <title>Registration</title>
+    </Helmet>
     <span className={styles.error}>{errorMessage}</span>
     <label>Full Name<input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isLoading} /></label>
     <label>Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} /></label>

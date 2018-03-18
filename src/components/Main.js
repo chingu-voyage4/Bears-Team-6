@@ -9,7 +9,8 @@ import { Timestamp } from './Timestamp'
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path="/" component={Registration} />
+      <Route exact path="/" component={UserSettings} />
+      <Route path="/registration" component={Registration} />
       <Route path="/login" component={Login} />
       <Route path="/usersettings" component={UserSettings} />
       <Route path="/timestamp" component={Timestamp} />
