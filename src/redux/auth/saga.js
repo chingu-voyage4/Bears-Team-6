@@ -18,9 +18,12 @@ export function* submitRegistration(): Saga<void> {
     if (isValidRegistrationData(fullName, email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
-      yield put(Creators.registrationApproved()) // instead should navigate to timestamp
-      yield put(push('/timestamp'))
-      yield put(Creators.startChannel())
+      if (res.status === 201 && res.data.message === 'Register Successful') {
+        localStorage.setItem('token', res.data.token)
+        yield put(Creators.registrationApproved())
+        yield put(push('/timestamp'))
+        yield put(Creators.startChannel())
+      }
     } else {
       yield put(Creators.registrationRejected('You\'ve entered invalid registration data.'))
     }
@@ -35,9 +38,9 @@ export function* submitLogin(): Saga<void> {
   const { email, password } = yield select((state) => state.auth)
   try {
     if (isValidLoginData(email, password)) {
-      const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
+      const res = yield call(axios.post, `${host}/api/auth/local-login`, { email, password })
       devLog(res)
-      yield put(Creators.loginApproved()) // instead should navigate to timestamp
+      yield put(Creators.loginApproved())
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
     } else {

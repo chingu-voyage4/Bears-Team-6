@@ -1,8 +1,12 @@
 # We Are Your Team
-
 Contribution guidelines
 
-## Set Up
+* [Frontend repo](https://github.com/chingu-voyage4/Bears-Team-6)
+* [Backend repo](https://github.com/theomegablack/chingu-voyage4-Bears-Team-6-backend)
+* [Heroku dev](http://dev-weareyourteam.herokuapp.com/)
+* [Heroku master](http://weareyourteam.herokuapp.com/)
+
+## Dev settings
 
 ### NPM scripts
 
@@ -23,3 +27,20 @@ Contribution guidelines
   * `"editor.rulers": [100]`
   * `"flow.useNPMPackagedFlow": true,`
   * `"javascript.validate.enable": false,`
+
+## How to run this App on localhost
+
+### Install
+
+* Install mongo
+* Install backend
+* set up `.env` file on backend
+* install `CORS Toggle` browser extension and run it (should be red)
+* change application config so that it will be pointed to localhost:3000
+
+### Run
+
+* run mongo
+* run backend wit `npm start`
+* run frontend with `npm start`
+* use app at `http://localhost:8080`
