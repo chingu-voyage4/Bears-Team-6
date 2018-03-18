@@ -37,7 +37,6 @@ export function* submitLogin(): Saga<void> {
     if (isValidLoginData(email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
-      console.log(res)
       yield put(Creators.loginApproved()) // instead should navigate to timestamp
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
