@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode=development",
     "build": "webpack -p --config=webpack.build.config.js --mode=production",
+    "build:move": "webpack -p --config=webpack.build.config.js --mode=production && node move-build.js",
     "eslint": "eslint src",
     "eslint:fix": "eslint src --fix",
     "flow": "flow",
