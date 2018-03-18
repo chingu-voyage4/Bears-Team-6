@@ -3,7 +3,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import lifecycle from 'react-pure-lifecycle'
 import { Creators } from '../../redux'
 import type { Props } from './types'
 
