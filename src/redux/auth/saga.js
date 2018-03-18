@@ -28,7 +28,9 @@ export function* submitRegistration(): Saga<void> {
       yield put(Creators.registrationRejected('You\'ve entered invalid registration data.'))
     }
   } catch (e) {
-    yield put(Creators.registrationRejected('Server rejected your registration, sorry.'))
+    const res = e.response
+    const message = (res && res.data.message) || e.message || 'Server rejected your registration, sorry.'
+    yield put(Creators.registrationRejected(message))
     quietLog(e)
   }
 }
@@ -47,7 +49,9 @@ export function* submitLogin(): Saga<void> {
       yield put(Creators.loginRejected('You\'ve entered invalid login data.'))
     }
   } catch (e) {
-    yield put(Creators.loginRejected('Server rejected your login, sorry.'))
+    const res = e.response
+    const message = (res && res.data.message) || e.message || 'Server rejected your registration, sorry.'
+    yield put(Creators.loginRejected(message))
     quietLog(e)
   }
 }
