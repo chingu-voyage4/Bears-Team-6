@@ -1,4 +1,3 @@
-
 // @flow
 
 import axios from 'axios'
@@ -54,13 +53,6 @@ export function* submitLogin(): Saga<void> {
     yield put(Creators.loginRejected(message))
     quietLog(e)
   }
-}
-
-export function* logout(): Saga<void> {
-  const { host } = config
-  const res = yield call(axios.post, `${host}/api/auth/logout`)
-  devLog(res)
-  yield put(push('/login'))
 }
 
 // todo: validate email server on the fly when changing email
