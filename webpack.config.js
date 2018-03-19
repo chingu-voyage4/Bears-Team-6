@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'We Are Your Team',
+      template: 'src/index.html',
     }),
   ],
   module: {

@@ -1,5 +1,5 @@
 // @flow
-
+import * as R from 'ramda'
 import { ActionTypes } from '..'
 
 type State = {
@@ -18,27 +18,31 @@ const initialState: State = {
   errorMessage: '', // cleanup on every state change
 }
 
-const submitRegistration = (state) => ({ ...state, isLoading: true })
+const submitRegistration = R.evolve({ isLoading: R.T })
 
-const submitLogin = (state) => ({ ...state, isLoading: true })
+const submitLogin = R.evolve({ isLoading: R.T })
 
-const registrationRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const registrationRejected = (state, { errorMessage }) => R.evolve({
+  isLoading: R.F,
+  errorMessage: R.always(errorMessage)
+})(state)
 
-const registrationApproved = (state) => ({
-  ...state,
-  fullName: '',
-  email: '',
-  password: '',
-  isLoading: false,
+const registrationApproved = R.evolve({
+  fullName: R.always(''),
+  email: R.always(''),
+  password: R.always(''),
+  isLoading: R.F,
 })
 
-const loginRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const loginRejected = (state, { errorMessage }) => (state, { errorMessage }) => R.evolve({
+  isLoading: R.F,
+  errorMessage: R.always(errorMessage)
+})(state)
 
-const loginApproved = (state) => ({
-  ...state,
-  email: '',
-  password: '',
-  isLoading: false,
+const loginApproved = R.evolve({
+  email: R.always(''),
+  password: R.always(''),
+  isLoading: R.F,
 })
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
