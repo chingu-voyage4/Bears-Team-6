@@ -40,7 +40,7 @@ export function* submitLogin(): Saga<void> {
   const { email, password } = yield select((state) => state.auth)
   try {
     if (isValidLoginData(email, password)) {
-      const res = yield call(axios.post, `${host}/api/auth/local-login`, { email, password })
+      const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
       yield put(Creators.loginApproved())
       yield put(push('/timestamp'))
