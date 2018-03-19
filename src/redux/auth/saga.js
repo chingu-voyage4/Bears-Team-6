@@ -18,8 +18,9 @@ export function* submitRegistration(): Saga<void> {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
       if (res.status === 201 && res.data.message === 'Register Successful') {
-        localStorage.setItem('token', res.data.token)
-        yield put(Creators.registrationApproved())
+        const token = res.data.token
+        localStorage.setItem('token', token)
+        yield put(Creators.registrationApproved(token))
         yield put(push('/timestamp'))
         yield put(Creators.startChannel())
       }
@@ -41,7 +42,8 @@ export function* submitLogin(): Saga<void> {
     if (isValidLoginData(email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
-      yield put(Creators.loginApproved())
+      localStorage.setItem('token', res.data.token)
+      yield put(Creators.loginApproved(res.data.token))
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
     } else {

@@ -9,6 +9,7 @@ type State = {
   isLoading: boolean,
   isAuthenticated: boolean,
   errorMessage: string,
+  token: string,
 };
 
 const initialState: State = {
@@ -18,6 +19,7 @@ const initialState: State = {
   isLoading: false,
   isAuthenticated: false,
   errorMessage: '', // cleanup on every state change
+  token: '',
 }
 
 const submitRegistration = R.evolve({ isLoading: R.T })
@@ -29,12 +31,22 @@ const registrationRejected = (state, { errorMessage }) => R.evolve({
   errorMessage: R.always(errorMessage)
 })(state)
 
-const registrationApproved = R.evolve({
-  fullName: R.always(''),
-  email: R.always(''),
-  password: R.always(''),
-  isLoading: R.F,
-  isAuthenticated: R.T,
+// const registrationApproved = (state, { token }: {token: string}) => R.evolve({
+//   fullName: R.always(''),
+//   email: R.always(''),
+//   password: R.always(''),
+//   isLoading: R.F,
+//   isAuthenticated: R.T,
+//   token: R.is(''),
+// })
+
+const registrationApproved = (state, { token }: {token: string}) => ({
+  fullName: '',
+  email: '',
+  password: '',
+  isLoading: false,
+  isAuthenticated: true,
+  token,
 })
 
 const loginRejected = (state, { errorMessage }) => (state, { errorMessage }) => R.evolve({
@@ -42,11 +54,21 @@ const loginRejected = (state, { errorMessage }) => (state, { errorMessage }) => 
   errorMessage: R.always(errorMessage)
 })(state)
 
-const loginApproved = R.evolve({
-  email: R.always(''),
-  password: R.always(''),
-  isLoading: R.F,
-  isAuthenticated: R.T,
+// const loginApproved = (state, { token }: {token: string}) => R.evolve({
+//   email: R.always(''),
+//   password: R.always(''),
+//   isLoading: R.F,
+//   isAuthenticated: R.T,
+//   token: R.always(''),
+// })
+
+const loginApproved = (state, { token }: {token: string}) => ({
+  fullName: '',
+  email: '',
+  password: '',
+  isLoading: false,
+  isAuthenticated: true,
+  token,
 })
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })

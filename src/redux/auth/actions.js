@@ -10,6 +10,7 @@ export const Types = {
   SUBMIT_LOGIN: 'SUBMIT_LOGIN',
   LOGIN_REJECTED: 'LOGIN_REJECTED',
   LOGIN_APPROVED: 'LOGIN_APPROVED',
+
 }
 
 const setFullName = (fullName: string) => ({
@@ -27,8 +28,9 @@ const registrationRejected = (errorMessage: string) => ({
   errorMessage,
 })
 
-const registrationApproved = () => ({
+const registrationApproved = (token: string) => ({
   type: Types.REGISTRATION_APPROVED,
+  token,
 })
 
 const loginRejected = (errorMessage: string) => ({
@@ -36,8 +38,9 @@ const loginRejected = (errorMessage: string) => ({
   errorMessage,
 })
 
-const loginApproved = () => ({
+const loginApproved = (token: string) => ({
   type: Types.LOGIN_APPROVED,
+  token,
 })
 
 const setPassword = (password: string) => ({
