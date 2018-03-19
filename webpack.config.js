@@ -10,6 +10,10 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+  },
   module: {
     rules: [
       {
