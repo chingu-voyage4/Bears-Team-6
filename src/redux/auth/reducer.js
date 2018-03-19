@@ -7,6 +7,7 @@ type State = {
   email: string,
   password: string,
   isLoading: boolean,
+  isAuthenticated: boolean,
   errorMessage: string,
 };
 
@@ -15,6 +16,7 @@ const initialState: State = {
   email: '', // lock if in progress
   password: '', // lock if in progress
   isLoading: false,
+  isAuthenticated: false,
   errorMessage: '', // cleanup on every state change
 }
 
@@ -32,6 +34,7 @@ const registrationApproved = R.evolve({
   email: R.always(''),
   password: R.always(''),
   isLoading: R.F,
+  isAuthenticated: R.T,
 })
 
 const loginRejected = (state, { errorMessage }) => (state, { errorMessage }) => R.evolve({
@@ -43,6 +46,7 @@ const loginApproved = R.evolve({
   email: R.always(''),
   password: R.always(''),
   isLoading: R.F,
+  isAuthenticated: R.T,
 })
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
