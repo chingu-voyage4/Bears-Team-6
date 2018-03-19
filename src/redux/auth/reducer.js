@@ -7,7 +7,6 @@ type State = {
   email: string,
   password: string,
   isLoading: boolean,
-  isAuthenticated: boolean,
   errorMessage: string,
 };
 
@@ -16,7 +15,6 @@ const initialState: State = {
   email: '', // lock if in progress
   password: '', // lock if in progress
   isLoading: false,
-  isAuthenticated: false,
   errorMessage: '', // cleanup on every state change
 }
 
@@ -34,7 +32,6 @@ const registrationApproved = R.evolve({
   email: R.always(''),
   password: R.always(''),
   isLoading: R.F,
-  isAuthenticated: R.T,
 })
 
 const loginRejected = (state, { errorMessage }) => (state, { errorMessage }) => R.evolve({
@@ -46,7 +43,6 @@ const loginApproved = R.evolve({
   email: R.always(''),
   password: R.always(''),
   isLoading: R.F,
-  isAuthenticated: R.T,
 })
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
@@ -54,8 +50,6 @@ const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fu
 const setEmail = (state, { email }: {email: string}) => ({ ...state, email, errorMessage: '' })
 
 const setPassword = (state, { password }: {password: string}) => ({ ...state, password, errorMessage: '' })
-
-const logout = (state => ({ ...state, isAuthenticated: false }))
 
 export const auth = (state: State = initialState, action): State => {
   if (!action || !action.type) return initialState
@@ -78,8 +72,6 @@ export const auth = (state: State = initialState, action): State => {
       return loginRejected(state, action)
     case ActionTypes.LOGIN_APPROVED:
       return loginApproved(state, action)
-    case ActionTypes.LOGOUT:
-      return logout(state)
     default:
       return state
   }
