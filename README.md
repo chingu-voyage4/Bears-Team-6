@@ -35,8 +35,6 @@ Contribution guidelines
 * Install mongo
 * Install backend
 * set up `.env` file on backend
-* install `CORS Toggle` browser extension and run it (should be red)
-* change application config so that it will be pointed to localhost:3000
 
 ### Run
 

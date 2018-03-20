@@ -18,7 +18,7 @@ export function* submitRegistration(): Saga<void> {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
       if (res.status === 201 && res.data.message === 'Register Successful') {
-        const token = res.data.token
+        const { token } = res.data
         localStorage.setItem('token', token)
         yield put(Creators.registrationApproved(token))
         yield put(push('/timestamp'))
@@ -89,5 +89,5 @@ export function* loadToken(): Saga<void> {
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
-  takeLatest(ActionTypes.LOAD_TOKEN, loadToken)
+  takeLatest(ActionTypes.LOAD_TOKEN, loadToken),
 ]
