@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators } from '../../redux'
@@ -30,7 +30,7 @@ export const Login = ({
         disabled={isLoading}
       />
     </label>
-    <label>Password
+    <label>Password (10 or longer)
       <input
         type="password"
         value={password}
