@@ -57,9 +57,37 @@ export function* submitLogin(): Saga<void> {
   }
 }
 
+export function* loadToken(): Saga<void> {
+  const { host } = config
+  const token = localStorage.getItem('token')
+  if (!token) {
+    yield put(Creators.invalidToken())
+    return
+  }
+  try {
+    const config = { headers: { Authorization: `Bearer ${token}` }}
+    // fetches all users
+    // should be a different route in the future
+    const res = yield call(axios.get, `${host}/api/users/`, config)
+    devLog(res)
+    if (res.status === 200) {
+      yield put(Creators.loginApproved(token))
+    } else {
+      // The token is invalid/expired
+      localStorage.removeItem('token')
+    }
+  } catch (e) {
+    devLog(e)
+    // The token is invalid/expired
+    localStorage.removeItem('token')
+    yield put(Creators.invalidToken())
+  }
+}
+
 // todo: validate email server on the fly when changing email
 
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
+  takeLatest(ActionTypes.LOAD_TOKEN, loadToken)
 ]

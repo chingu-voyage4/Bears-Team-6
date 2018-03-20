@@ -1,12 +1,14 @@
 import React from 'react'
 import { Helmet } from "react-helmet"
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { MainMenu } from './components/MainMenu'
 import Main from './components/Main'
 import { Creators } from './redux'
 
-export default class App extends React.Component {
+class App extends React.Component {
+  // Checks if there is a token
   componentWillMount() {
     this.props.loadToken();
   }
@@ -34,4 +36,5 @@ const mapDispatchToProps = (dispatch) => {
   )
 }
 
-export const connected = connect(() => ({}), mapDispatchToProps)(App)
+//
+export default withRouter(connect(() => ({}), mapDispatchToProps)(App))

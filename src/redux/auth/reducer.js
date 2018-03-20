@@ -77,6 +77,10 @@ const setEmail = (state, { email }: {email: string}) => ({ ...state, email, erro
 
 const setPassword = (state, { password }: {password: string}) => ({ ...state, password, errorMessage: '' })
 
+const loadToken = R.evolve({ isLoading: R.T })
+
+const invalidToken = R.evolve({ isLoading: R.F })
+
 export const auth = (state: State = initialState, action): State => {
   if (!action || !action.type) return initialState
   switch (action.type) {
@@ -98,6 +102,10 @@ export const auth = (state: State = initialState, action): State => {
       return loginRejected(state, action)
     case ActionTypes.LOGIN_APPROVED:
       return loginApproved(state, action)
+    case ActionTypes.LOAD_TOKEN:
+      return loadToken(state)
+    case ActionTypes.INVALID_TOKEN:
+      return invalidToken(state)
     default:
       return state
   }

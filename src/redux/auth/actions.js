@@ -10,7 +10,9 @@ export const Types = {
   SUBMIT_LOGIN: 'SUBMIT_LOGIN',
   LOGIN_REJECTED: 'LOGIN_REJECTED',
   LOGIN_APPROVED: 'LOGIN_APPROVED',
-
+  LOAD_TOKEN: 'LOAD_TOKEN',
+  VERIFY_TOKEN: 'VERIFY_TOKEN',
+  INVALID_TOKEN: 'INVALID_TOKEN',
 }
 
 const setFullName = (fullName: string) => ({
@@ -56,6 +58,13 @@ const submitLogin = () => ({
   type: Types.SUBMIT_LOGIN,
 })
 
+const loadToken = () => ({
+  type: Types.LOAD_TOKEN
+})
+
+const invalidToken = () => ({
+  type: Types.INVALID_TOKEN
+})
 
 export const Creators = {
   setFullName,
@@ -67,4 +76,6 @@ export const Creators = {
   registrationApproved,
   loginRejected,
   loginApproved,
+  loadToken,
+  invalidToken,
 }
