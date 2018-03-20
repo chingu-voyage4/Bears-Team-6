@@ -1,4 +1,4 @@
-require('webpack')
+const webpack = require('webpack')
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const Uglify = require('uglifyjs-webpack-plugin')
@@ -15,6 +15,9 @@ const buildConfig = {
     ...basicConfig.plugins,
     new Uglify(),
     new CleanWebpackPlugin(['build']),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+    }),
   ],
 }
 
