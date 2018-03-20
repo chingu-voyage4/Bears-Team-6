@@ -1,6 +1,6 @@
 // @flow
 
-import * as R from 'ramda'
+import R from 'ramda'
 
 export const isValidEmail: string => boolean = R.allPass([
   R.is(String),
@@ -12,10 +12,7 @@ export const isValidPassword = R.allPass([
   R.pipe(R.length, R.lte(10)),
 ])
 
-export const isValidName = R.allPass([
-  R.is(String),
-  R.pipe(R.length, R.lte(2)),
-])
+export const isValidName = (x: string) => typeof x === 'string' && x.length > 1
 
 export const isValidRegistrationData = (name: string, email: string, password: string) =>
   isValidEmail(email) && isValidPassword(password) && isValidName(name)
