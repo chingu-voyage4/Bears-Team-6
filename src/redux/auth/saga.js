@@ -1,4 +1,3 @@
-
 // @flow
 
 import axios from 'axios'
@@ -19,8 +18,9 @@ export function* submitRegistration(): Saga<void> {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
       if (res.status === 201 && res.data.message === 'Register Successful') {
-        localStorage.setItem('token', res.data.token)
-        yield put(Creators.registrationApproved())
+        const token = res.data.token
+        localStorage.setItem('token', token)
+        yield put(Creators.registrationApproved(token))
         yield put(push('/timestamp'))
         yield put(Creators.startChannel())
       }
@@ -42,7 +42,8 @@ export function* submitLogin(): Saga<void> {
     if (isValidLoginData(email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
-      yield put(Creators.loginApproved())
+      localStorage.setItem('token', res.data.token)
+      yield put(Creators.loginApproved(res.data.token))
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
     } else {
@@ -56,9 +57,37 @@ export function* submitLogin(): Saga<void> {
   }
 }
 
+export function* loadToken(): Saga<void> {
+  const { host } = config
+  const token = localStorage.getItem('token')
+  if (!token) {
+    yield put(Creators.invalidToken())
+    return
+  }
+  try {
+    const config = { headers: { Authorization: `Bearer ${token}` }}
+    // fetches all users
+    // should be a different route in the future
+    const res = yield call(axios.get, `${host}/api/users/`, config)
+    devLog(res)
+    if (res.status === 200) {
+      yield put(Creators.loginApproved(token))
+    } else {
+      // The token is invalid/expired
+      localStorage.removeItem('token')
+    }
+  } catch (e) {
+    devLog(e)
+    // The token is invalid/expired
+    localStorage.removeItem('token')
+    yield put(Creators.invalidToken())
+  }
+}
+
 // todo: validate email server on the fly when changing email
 
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
+  takeLatest(ActionTypes.LOAD_TOKEN, loadToken)
 ]
