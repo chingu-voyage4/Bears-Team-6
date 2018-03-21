@@ -59,11 +59,11 @@ const submitLogin = () => ({
 })
 
 const loadToken = () => ({
-  type: Types.LOAD_TOKEN
+  type: Types.LOAD_TOKEN,
 })
 
 const invalidToken = () => ({
-  type: Types.INVALID_TOKEN
+  type: Types.INVALID_TOKEN,
 })
 
 export const Creators = {

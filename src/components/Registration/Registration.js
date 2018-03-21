@@ -24,9 +24,18 @@ export const Registration = ({
       <title>Registration</title>
     </Helmet>
     <span className={styles.error}>{errorMessage}</span>
-    <label>Full Name (2 or longer)<input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isLoading} /></label>
-    <label>Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} /></label>
-    <label>Password (10 or longer)<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} /></label>
+    <label>
+      Full Name (2 or longer)
+      <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isLoading} />
+    </label>
+    <label>
+      Email
+      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
+    </label>
+    <label>
+      Password (10 or longer)
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
+    </label>
     <button onClick={submitRegistration} disabled={isLoading}>submit</button>
   </div>)
 

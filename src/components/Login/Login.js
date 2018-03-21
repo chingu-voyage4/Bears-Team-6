@@ -44,10 +44,10 @@ export const Login = ({
 const mapStateToProps = ({
   auth:
     {
-      fullName, email, password, errorMessage, isLoading,
+      email, password, errorMessage, isLoading,
     },
 }) => ({
-  fullName, email, password, errorMessage, isLoading,
+  email, password, errorMessage, isLoading,
 })
 
 const mapDispatchToProps = (dispatch) => {
