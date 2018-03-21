@@ -14,7 +14,7 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 
 // local
-import App from './App'
+import App from './app'
 import { reducers, sagas } from './redux'
 
 const sagaMiddleware = createSagaMiddleware()
