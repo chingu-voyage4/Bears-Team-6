@@ -10,8 +10,8 @@ type State = {
 };
 
 const initialState: State = {
-  lat: 0,
-  lng: 0,
+  lat: 35.652832,
+  lng: 139.839478,
   isLocationSetManually: false,
 }
 

@@ -6,7 +6,7 @@ import { eventChannel } from 'redux-saga'
 import { takeLatest, call, take, select, put } from 'redux-saga/effects'
 import type { Saga, Channel } from '../../types'
 import { ActionTypes, Creators } from '..'
-import { quietLog } from '../../utils'
+import { quietLog, devLog } from '../../utils'
 
 export const channelPositionChange = (): Channel =>
   eventChannel((emit) => {
@@ -14,6 +14,7 @@ export const channelPositionChange = (): Channel =>
       emit(data)
     }
     const watchID = navigator.geolocation.watchPosition(handler)
+    // navigator.geolocation.getCurrentPosition(handler)
     return () => {
       navigator.geolocation.clearWatch(watchID)
     }
@@ -24,12 +25,14 @@ export function* watchPosition(): Saga<void> {
   if (!isLocationSetManually && ('geolocation' in navigator)) {
     const channel = yield call(channelPositionChange)
     while (true) {
+      devLog('before take')
       const pos = yield take(channel)
+      devLog('after take')
       quietLog(pos.coords.latitude, pos.coords.longitude)
       yield put(Creators.setGeoposition(pos.coords.latitude, pos.coords.longitude))
     }
   } else {
-    yield put(Creators.setGeoposition(35.652832, 139.839478))
+    devLog('location is set manually or no geolocation is presented in browser')
   }
 }
 
