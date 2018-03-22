@@ -7,7 +7,7 @@ import { MainMenu } from './components/MainMenu'
 import Main from './components/Main'
 import { Creators } from './redux'
 
-class App extends React.Component {
+class App extends React.Component<Props>{
   // Checks if there is a token
   componentWillMount() {
     this.props.loadToken();
