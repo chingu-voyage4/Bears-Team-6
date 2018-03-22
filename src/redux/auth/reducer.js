@@ -38,7 +38,7 @@ const registrationApproved = (state, { token }: {token: string}) => R.evolve({
   isLoading: R.F,
   isAuthenticated: R.T,
   token: R.always(token),
-})
+})(state)
 
 const loginRejected = (state, { errorMessage }) => R.evolve({
   isLoading: R.F,
@@ -51,7 +51,7 @@ const loginApproved = (state, { token }: {token: string}) => R.evolve({
   isLoading: R.F,
   isAuthenticated: R.T,
   token: R.always(token),
-})
+})(state)
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
 
