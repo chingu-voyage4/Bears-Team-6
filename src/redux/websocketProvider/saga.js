@@ -13,7 +13,7 @@ import type { Saga, Socket } from '../../types'
  */
 const subscribeConnect = () => {
   const { host } = config
-  const socket = io(`${host}/websockets`)
+  const socket = io(`${host}/websockets`, { transports: ['websocket'] })
   return new Promise((resolve, reject) => {
     socket.on('connect', () => {
       resolve(socket)

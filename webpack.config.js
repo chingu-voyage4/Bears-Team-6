@@ -7,8 +7,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'We Are Your Team',
+      template: 'src/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+  },
   module: {
     rules: [
       {

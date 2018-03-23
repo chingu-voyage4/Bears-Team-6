@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators } from '../../redux'
@@ -16,9 +17,14 @@ export class Timestamp extends React.PureComponent<Props> {
     const { serverStatus, channelStatus } = this.props
     return (
       <div>
-        <p>Server status: {serverStatus} (should be off until authorized)</p>
-        <p>Channel status: {channelStatus} (should be on)</p>
-        <p>timestamp: {this.props.ts}</p>
+        <Helmet>
+          <title>Timestamp</title>
+        </Helmet>
+        <div>
+          <p>Server status: {serverStatus} (should be off until authorized)</p>
+          <p>Channel status: {channelStatus} (should be on)</p>
+          <p>timestamp: {this.props.ts}</p>
+        </div>
       </div>)
   }
 }

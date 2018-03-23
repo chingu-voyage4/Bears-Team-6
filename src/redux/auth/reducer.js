@@ -1,5 +1,5 @@
 // @flow
-
+import * as R from 'ramda'
 import { ActionTypes } from '..'
 
 type State = {
@@ -7,45 +7,67 @@ type State = {
   email: string,
   password: string,
   isLoading: boolean,
+  isAuthenticated: boolean,
   errorMessage: string,
+  token: string,
 };
+
+// Reducer functions
 
 const initialState: State = {
   fullName: '', // lock if in progress
   email: '', // lock if in progress
   password: '', // lock if in progress
   isLoading: false,
+  isAuthenticated: false,
   errorMessage: '', // cleanup on every state change
+  token: '',
 }
 
-const submitRegistration = (state) => ({ ...state, isLoading: true })
+const submitRegistration = R.evolve({ isLoading: R.T })
 
-const submitLogin = (state) => ({ ...state, isLoading: true })
+const submitLogin = R.pipe(R.evolve({ isLoading: R.T }))
 
-const registrationRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const registrationRejected = (state, { errorMessage }) => R.evolve({
+  isLoading: R.F,
+  errorMessage: R.always(errorMessage),
+})(state)
 
-const registrationApproved = (state) => ({
-  ...state,
-  fullName: '',
-  email: '',
-  password: '',
-  isLoading: false,
-})
+const registrationApproved = (state, { token }: {token: string}) => R.evolve({
+  fullName: R.always(''),
+  email: R.always(''),
+  password: R.always(''),
+  isLoading: R.F,
+  isAuthenticated: R.T,
+  token: R.always(token),
+})(state)
 
-const loginRejected = (state, { errorMessage }) => ({ ...state, errorMessage, isLoading: false })
+const loginRejected = (state, { errorMessage }) => R.evolve({
+  isLoading: R.F,
+  errorMessage: R.always(errorMessage),
+})(state)
 
-const loginApproved = (state) => ({
-  ...state,
-  email: '',
-  password: '',
-  isLoading: false,
-})
+const loginApproved = (state, { token }: {token: string}): boolean => R.evolve({
+  email: R.always(''),
+  password: R.always(''),
+  isLoading: R.F,
+  isAuthenticated: R.T,
+  token: R.always(token),
+})(state)
 
 const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
 
 const setEmail = (state, { email }: {email: string}) => ({ ...state, email, errorMessage: '' })
 
 const setPassword = (state, { password }: {password: string}) => ({ ...state, password, errorMessage: '' })
+
+const loadToken = R.evolve({ isLoading: R.T })
+
+const invalidToken = R.evolve({ isLoading: R.F })
+
+// Selectors
+
+export const checkAuthentication = state => state.auth.isAuthenticated
 
 export const auth = (state: State = initialState, action): State => {
   if (!action || !action.type) return initialState
@@ -68,6 +90,10 @@ export const auth = (state: State = initialState, action): State => {
       return loginRejected(state, action)
     case ActionTypes.LOGIN_APPROVED:
       return loginApproved(state, action)
+    case ActionTypes.LOAD_TOKEN:
+      return loadToken(state)
+    case ActionTypes.INVALID_TOKEN:
+      return invalidToken(state)
     default:
       return state
   }

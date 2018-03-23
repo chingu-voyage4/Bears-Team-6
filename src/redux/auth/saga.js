@@ -1,4 +1,3 @@
-
 // @flow
 
 import axios from 'axios'
@@ -18,14 +17,20 @@ export function* submitRegistration(): Saga<void> {
     if (isValidRegistrationData(fullName, email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
       devLog(res)
-      yield put(Creators.registrationApproved()) // instead should navigate to timestamp
-      yield put(push('/timestamp'))
-      yield put(Creators.startChannel())
+      if (res.status === 201 && res.data.message === 'Register Successful') {
+        const token = res.data.token
+        localStorage.setItem('token', token)
+        yield put(Creators.registrationApproved(token))
+        yield put(push('/timestamp'))
+        yield put(Creators.startChannel())
+      }
     } else {
       yield put(Creators.registrationRejected('You\'ve entered invalid registration data.'))
     }
   } catch (e) {
-    yield put(Creators.registrationRejected('Server rejected your registration, sorry.'))
+    const res = e.response
+    const message = (res && res.data.message) || e.message || 'Server rejected your registration, sorry.'
+    yield put(Creators.registrationRejected(message))
     quietLog(e)
   }
 }
@@ -37,15 +42,48 @@ export function* submitLogin(): Saga<void> {
     if (isValidLoginData(email, password)) {
       const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
       devLog(res)
-      yield put(Creators.loginApproved()) // instead should navigate to timestamp
+      localStorage.setItem('token', res.data.token)
+      yield put(Creators.loginApproved(res.data.token))
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
     } else {
       yield put(Creators.loginRejected('You\'ve entered invalid login data.'))
     }
   } catch (e) {
-    yield put(Creators.loginRejected('Server rejected your login, sorry.'))
+    const res = e.response
+    const message = (res && res.data.message) || e.message || 'Server rejected your registration, sorry.'
+    yield put(Creators.loginRejected(message))
     quietLog(e)
+  }
+}
+
+export function* loadToken(): Saga<void> {
+  const { host } = config
+  const token = localStorage.getItem('token')
+  if (!token) {
+    yield put(Creators.invalidToken())
+    return
+  }
+  try {
+    const config = { headers: { Authorization: `Bearer ${token}` }}
+    // fetches all users
+    // should be a different route in the future
+    const res = yield call(axios.get, `${host}/api/users/`, config)
+    devLog(res)
+    if (res.status === 200) {
+      yield put(Creators.loginApproved(token))
+      return
+    } else if (res.status === 401) {
+      // The token is invalid/expired
+      localStorage.removeItem('token')
+      yield put(Creators.invalidToken())
+    }
+    // todo: Notify there is a server error (the token isn't deleted)
+    yield put(Creators.invalidToken())
+  } catch (e) {
+    devLog(e)
+    // The token is invalid/expired
+    yield put(Creators.invalidToken())
   }
 }
 
@@ -54,4 +92,5 @@ export function* submitLogin(): Saga<void> {
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
+  takeLatest(ActionTypes.LOAD_TOKEN, loadToken)
 ]
