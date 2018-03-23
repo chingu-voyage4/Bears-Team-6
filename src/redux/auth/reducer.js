@@ -12,6 +12,8 @@ type State = {
   token: string,
 };
 
+// Reducer functions
+
 const initialState: State = {
   fullName: '', // lock if in progress
   email: '', // lock if in progress
@@ -45,7 +47,7 @@ const loginRejected = (state, { errorMessage }) => R.evolve({
   errorMessage: R.always(errorMessage),
 })(state)
 
-const loginApproved = (state, { token }: {token: string}) => R.evolve({
+const loginApproved = (state, { token }: {token: string}): boolean => R.evolve({
   email: R.always(''),
   password: R.always(''),
   isLoading: R.F,
@@ -62,6 +64,10 @@ const setPassword = (state, { password }: {password: string}) => ({ ...state, pa
 const loadToken = R.evolve({ isLoading: R.T })
 
 const invalidToken = R.evolve({ isLoading: R.F })
+
+// Selectors
+
+export const checkAuthentication = state => state.auth.isAuthenticated
 
 export const auth = (state: State = initialState, action): State => {
   if (!action || !action.type) return initialState

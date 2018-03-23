@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { MainMenu } from './components/MainMenu'
-import Main from './components/Main'
+import Main from './components/Routes/Routes'
 import { Creators } from './redux'
 
 class App extends React.Component<Props>{

@@ -9,13 +9,13 @@ import type { Props } from './types'
 const allPaths = {
 authorizedPaths:
   [
-    <li><Link to="/usersettings">User Settings</Link></li>,
-    <li><Link to="/timestamp">Timestamp</Link></li>
+    <li key="/usersettings"><Link to="/usersettings">User Settings</Link></li>,
+    <li key="/timestamp"><Link to="/timestamp">Timestamp</Link></li>
   ],
 unauthorizedPaths:
   [
-    <li><Link to="/registration">Registration</Link></li>,
-    <li><Link to="/login">Login</Link></li>
+    <li key="/registration"><Link to="/registration">Registration</Link></li>,
+    <li key="/login"><Link to="/login">Login</Link></li>
   ]
 }
 
@@ -23,8 +23,6 @@ export class MainMenu extends React.Component<Props> {
   render() {
     const { isAuthenticated, isLoading } = this.props
     const currentPath = allPaths[`${isAuthenticated ? 'authorizedPaths' : 'unauthorizedPaths'}`]
-    console.log(isAuthenticated)
-    console.log(currentPath)
     return (
       <header className={styles.root}>
         <nav>
