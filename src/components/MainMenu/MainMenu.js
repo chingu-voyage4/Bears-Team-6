@@ -8,15 +8,20 @@ import type { Props } from './types'
 import styles from './styles.scss'
 
 const allPaths = {
-  authorizedPaths: [
+  authorizedPaths:
+  [
     <li key="/usersettings">
       <Link to="/usersettings">User Settings</Link>
     </li>,
     <li key="/timestamp">
       <Link to="/timestamp">Timestamp</Link>
     </li>,
+    <li key="/logout">
+      <Link to="/logout">Logout</Link>
+    </li>,
   ],
-  unauthorizedPaths: [
+  unauthorizedPaths:
+  [
     <li key="/registration">
       <Link to="/registration">Registration</Link>
     </li>,
@@ -33,7 +38,9 @@ export class MainMenu extends React.Component<Props> {
     return (
       <header className={styles.root}>
         <nav>
-          <ul>{!isLoading && currentPath.map((li) => li)}</ul>
+          <ul>
+            {!isLoading && currentPath.map((li) => li)}
+          </ul>
         </nav>
       </header>
     )

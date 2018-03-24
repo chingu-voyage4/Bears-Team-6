@@ -70,6 +70,11 @@ const loadToken = R.evolve({ isLoading: R.T })
 
 const invalidToken = R.evolve({ isLoading: R.F })
 
+const logout = (state) => R.evolve({
+  isAuthenticated: R.F,
+  token: R.always(''),
+})(state)
+
 // Selectors
 
 export const checkAuthentication = R.path(['auth', 'isAuthenticated'])
@@ -99,6 +104,8 @@ export const auth = (state: State = initialState, action: Action): State => {
       return loadToken(state)
     case ActionTypes.INVALID_TOKEN:
       return invalidToken(state)
+    case ActionTypes.LOGOUT:
+      return logout(state)
     default:
       return state
   }
