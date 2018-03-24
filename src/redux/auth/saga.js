@@ -72,14 +72,17 @@ export function* loadToken(): Saga<void> {
     devLog(res)
     if (res.status === 200) {
       yield put(Creators.loginApproved(token))
-    } else {
+      return
+    } else if (res.status === 401) {
       // The token is invalid/expired
       localStorage.removeItem('token')
+      yield put(Creators.invalidToken())
     }
+    // todo: Notify there is a server error (the token isn't deleted)
+    yield put(Creators.invalidToken())
   } catch (e) {
     devLog(e)
     // The token is invalid/expired
-    localStorage.removeItem('token')
     yield put(Creators.invalidToken())
   }
 }
