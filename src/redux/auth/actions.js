@@ -11,58 +11,97 @@ export const Types = {
   LOGIN_REJECTED: 'LOGIN_REJECTED',
   LOGIN_APPROVED: 'LOGIN_APPROVED',
   LOAD_TOKEN: 'LOAD_TOKEN',
-  VERIFY_TOKEN: 'VERIFY_TOKEN',
   INVALID_TOKEN: 'INVALID_TOKEN',
 }
 
-const setFullName = (fullName: string) => ({
+export type SET_FULL_NAME = {
+  type: 'SET_FULL_NAME',
+  fullName: string,
+}
+const setFullName = (fullName: string): SET_FULL_NAME => ({
   type: Types.SET_FULL_NAME,
   fullName,
 })
 
-const setEmail = (email: string) => ({
+export type SET_EMAIL = {
+  type: 'SET_EMAIL',
+  email: string,
+}
+const setEmail = (email: string): SET_EMAIL => ({
   type: Types.SET_EMAIL,
   email,
 })
 
-const registrationRejected = (errorMessage: string) => ({
+export type REGISTRATION_REJECTED = {
+  type: 'REGISTRATION_REJECTED',
+  errorMessage: string,
+}
+const registrationRejected = (errorMessage: string): REGISTRATION_REJECTED => ({
   type: Types.REGISTRATION_REJECTED,
   errorMessage,
 })
 
-const registrationApproved = (token: string) => ({
+export type REGISTRATION_APPROVED = {
+  type: 'REGISTRATION_APPROVED',
+  token: string,
+}
+const registrationApproved = (token: string): REGISTRATION_APPROVED => ({
   type: Types.REGISTRATION_APPROVED,
   token,
 })
 
-const loginRejected = (errorMessage: string) => ({
+export type LOGIN_REJECTED = {
+  type: 'LOGIN_REJECTED',
+  errorMessage: string,
+}
+const loginRejected = (errorMessage: string): LOGIN_REJECTED => ({
   type: Types.LOGIN_REJECTED,
   errorMessage,
 })
 
-const loginApproved = (token: string) => ({
+export type LOGIN_APPROVED = {
+  type: 'LOGIN_APPROVED',
+  token: string,
+}
+const loginApproved = (token: string): LOGIN_APPROVED => ({
   type: Types.LOGIN_APPROVED,
   token,
 })
 
-const setPassword = (password: string) => ({
+export type SET_PASSWORD = {
+  type: 'SET_PASSWORD',
+  password: string,
+}
+const setPassword = (password: string): SET_PASSWORD => ({
   type: Types.SET_PASSWORD,
   password,
 })
 
-const submitRegistration = () => ({
+export type SUBMIT_REGISTRATION = {
+  type: 'SUBMIT_REGISTRATION',
+}
+const submitRegistration = (): SUBMIT_REGISTRATION => ({
   type: Types.SUBMIT_REGISTRATION,
 })
 
-const submitLogin = () => ({
+export type SUBMIT_LOGIN = {
+  type: 'SUBMIT_LOGIN',
+}
+const submitLogin = (): SUBMIT_LOGIN => ({
   type: Types.SUBMIT_LOGIN,
 })
 
-const loadToken = () => ({
+export type LOAD_TOKEN = {
+  type: 'LOAD_TOKEN',
+}
+const loadToken = (): LOAD_TOKEN => ({
   type: Types.LOAD_TOKEN,
 })
 
-const invalidToken = () => ({
+export type INVALID_TOKEN = {
+  type: 'INVALID_TOKEN',
+}
+const invalidToken = (): INVALID_TOKEN => ({
   type: Types.INVALID_TOKEN,
 })
 
@@ -79,3 +118,16 @@ export const Creators = {
   loadToken,
   invalidToken,
 }
+
+export type Action =
+  | SET_FULL_NAME
+  | SET_EMAIL
+  | SET_PASSWORD
+  | SUBMIT_REGISTRATION
+  | REGISTRATION_REJECTED
+  | REGISTRATION_APPROVED
+  | SUBMIT_LOGIN
+  | LOGIN_REJECTED
+  | LOGIN_APPROVED
+  | LOAD_TOKEN
+  | INVALID_TOKEN

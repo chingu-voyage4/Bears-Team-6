@@ -1,6 +1,7 @@
 // @flow
 import * as R from 'ramda'
 import { ActionTypes } from '..'
+import type { Action } from './actions'
 
 type State = {
   fullName: string,
@@ -10,7 +11,7 @@ type State = {
   isAuthenticated: boolean,
   errorMessage: string,
   token: string,
-};
+}
 
 // Reducer functions
 
@@ -28,38 +29,42 @@ const submitRegistration = R.evolve({ isLoading: R.T })
 
 const submitLogin = R.pipe(R.evolve({ isLoading: R.T }))
 
-const registrationRejected = (state, { errorMessage }) => R.evolve({
-  isLoading: R.F,
-  errorMessage: R.always(errorMessage),
-})(state)
+const registrationRejected = (state, { errorMessage }) =>
+  R.evolve({
+    isLoading: R.F,
+    errorMessage: R.always(errorMessage),
+  })(state)
 
-const registrationApproved = (state, { token }: {token: string}) => R.evolve({
-  fullName: R.always(''),
-  email: R.always(''),
-  password: R.always(''),
-  isLoading: R.F,
-  isAuthenticated: R.T,
-  token: R.always(token),
-})(state)
+const registrationApproved = (state, { token }: { token: string }) =>
+  R.evolve({
+    fullName: R.always(''),
+    email: R.always(''),
+    password: R.always(''),
+    isLoading: R.F,
+    isAuthenticated: R.T,
+    token: R.always(token),
+  })(state)
 
-const loginRejected = (state, { errorMessage }) => R.evolve({
-  isLoading: R.F,
-  errorMessage: R.always(errorMessage),
-})(state)
+const loginRejected = (state, { errorMessage }) =>
+  R.evolve({
+    isLoading: R.F,
+    errorMessage: R.always(errorMessage),
+  })(state)
 
-const loginApproved = (state, { token }: {token: string}): boolean => R.evolve({
-  email: R.always(''),
-  password: R.always(''),
-  isLoading: R.F,
-  isAuthenticated: R.T,
-  token: R.always(token),
-})(state)
+const loginApproved = (state, { token }: { token: string }) =>
+  R.evolve({
+    email: R.always(''),
+    password: R.always(''),
+    isLoading: R.F,
+    isAuthenticated: R.T,
+    token: R.always(token),
+  })(state)
 
-const setFullName = (state, { fullName }: {fullName: string}) => ({ ...state, fullName, errorMessage: '' })
+const setFullName = (state, { fullName }: { fullName: string }) => ({ ...state, fullName, errorMessage: '' })
 
-const setEmail = (state, { email }: {email: string}) => ({ ...state, email, errorMessage: '' })
+const setEmail = (state, { email }: { email: string }) => ({ ...state, email, errorMessage: '' })
 
-const setPassword = (state, { password }: {password: string}) => ({ ...state, password, errorMessage: '' })
+const setPassword = (state, { password }: { password: string }) => ({ ...state, password, errorMessage: '' })
 
 const loadToken = R.evolve({ isLoading: R.T })
 
@@ -67,9 +72,9 @@ const invalidToken = R.evolve({ isLoading: R.F })
 
 // Selectors
 
-export const checkAuthentication = state => state.auth.isAuthenticated
+export const checkAuthentication = R.path(['auth', 'isAuthenticated'])
 
-export const auth = (state: State = initialState, action): State => {
+export const auth = (state: State = initialState, action: Action): State => {
   if (!action || !action.type) return initialState
   switch (action.type) {
     case ActionTypes.SET_FULL_NAME:

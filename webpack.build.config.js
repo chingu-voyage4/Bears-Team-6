@@ -11,11 +11,7 @@ const buildConfig = {
     filename: 'bundle.js',
     publicPath: 'static',
   },
-  plugins: [
-    ...basicConfig.plugins,
-    new Uglify(),
-    new CleanWebpackPlugin(['build']),
-  ],
+  plugins: [...basicConfig.plugins, new Uglify(), new CleanWebpackPlugin(['build'])],
 }
 
 module.exports = buildConfig

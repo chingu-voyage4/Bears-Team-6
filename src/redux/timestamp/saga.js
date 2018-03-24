@@ -1,4 +1,3 @@
-
 // @flow
 
 import { eventChannel } from 'redux-saga'

@@ -15,17 +15,22 @@ export function* submitRegistration(): Saga<void> {
   devLog('trying to register')
   try {
     if (isValidRegistrationData(fullName, email, password)) {
-      const res = yield call(axios.post, `${host}/api/auth/register`, { name: fullName, email, password })
+      const res = yield call(axios.post, `${host}/api/auth/register`, {
+        name: fullName,
+        email,
+        password,
+      })
       devLog(res)
       if (res.status === 201 && res.data.message === 'Register Successful') {
-        const token = res.data.token
+        const { token } = res.data
         localStorage.setItem('token', token)
         yield put(Creators.registrationApproved(token))
+        yield put(Creators.watchPosition())
         yield put(push('/timestamp'))
         yield put(Creators.startChannel())
       }
     } else {
-      yield put(Creators.registrationRejected('You\'ve entered invalid registration data.'))
+      yield put(Creators.registrationRejected("You've entered invalid registration data."))
     }
   } catch (e) {
     const res = e.response
@@ -40,14 +45,18 @@ export function* submitLogin(): Saga<void> {
   const { email, password } = yield select((state) => state.auth)
   try {
     if (isValidLoginData(email, password)) {
-      const res = yield call(axios.post, `${host}/api/auth/login`, { email, password })
+      const res = yield call(axios.post, `${host}/api/auth/login`, {
+        email,
+        password,
+      })
       devLog(res)
       localStorage.setItem('token', res.data.token)
       yield put(Creators.loginApproved(res.data.token))
+      yield put(Creators.watchPosition())
       yield put(push('/timestamp'))
       yield put(Creators.startChannel())
     } else {
-      yield put(Creators.loginRejected('You\'ve entered invalid login data.'))
+      yield put(Creators.loginRejected("You've entered invalid login data."))
     }
   } catch (e) {
     const res = e.response
@@ -65,13 +74,14 @@ export function* loadToken(): Saga<void> {
     return
   }
   try {
-    const config = { headers: { Authorization: `Bearer ${token}` }}
+    const config = { headers: { Authorization: `Bearer ${token}` } }
     // fetches all users
     // should be a different route in the future
     const res = yield call(axios.get, `${host}/api/users/`, config)
     devLog(res)
     if (res.status === 200) {
       yield put(Creators.loginApproved(token))
+      yield put(Creators.watchPosition())
       return
     } else if (res.status === 401) {
       // The token is invalid/expired
@@ -92,5 +102,5 @@ export function* loadToken(): Saga<void> {
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
-  takeLatest(ActionTypes.LOAD_TOKEN, loadToken)
+  takeLatest(ActionTypes.LOAD_TOKEN, loadToken),
 ]

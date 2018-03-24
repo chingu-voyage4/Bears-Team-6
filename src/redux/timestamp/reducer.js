@@ -6,7 +6,7 @@ import type { Action } from './actions'
 type State = {
   +ts: number,
   +isSubscribed: boolean,
-};
+}
 
 const initialState: State = {
   ts: 0,

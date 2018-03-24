@@ -1,4 +1,5 @@
 # We Are Your Team
+
 Contribution guidelines
 
 * [Frontend repo](https://github.com/chingu-voyage4/Bears-Team-6)
@@ -19,6 +20,7 @@ Contribution guidelines
 ### VS Code
 
 * Extensions
+
   * `Flow Language Support`
   * `ESLint`
   * `snapshot tools` (for reviewing changes in snapshots)
