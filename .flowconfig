@@ -8,5 +8,8 @@ src
 [lints]
 
 [options]
+suppress_comment= \\(.\\|\n\\)*\\$ValidationTest
+suppress_comment= \\(.\\|\n\\)*\\$ItWorksFineButFlowIsAnIdiot
+suppress_comment= \\(.\\|\n\\)*\\$IgnoreStylesheets
 
 [strict]
