@@ -106,7 +106,11 @@ const invalidToken = (): INVALID_TOKEN => ({
   type: Types.INVALID_TOKEN,
 })
 
-const logout = () => ({
+export type LOGOUT = {
+  type: 'LOGOUT'
+}
+
+const logout = (): LOGOUT => ({
   type: Types.LOGOUT,
 })
 
@@ -137,3 +141,4 @@ export type Action =
   | LOGIN_APPROVED
   | LOAD_TOKEN
   | INVALID_TOKEN
+  | LOGOUT
