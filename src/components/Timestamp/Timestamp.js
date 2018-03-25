@@ -9,7 +9,6 @@ import type { Props } from './types'
 
 export class Timestamp extends React.PureComponent<Props> {
   componentWillMount() {
-    this.props.startChannel()
     this.props.subscribeTimestamp()
   }
 

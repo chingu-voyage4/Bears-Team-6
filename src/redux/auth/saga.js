@@ -26,8 +26,8 @@ export function* submitRegistration(): Saga<void> {
         localStorage.setItem('token', token)
         yield put(Creators.registrationApproved(token))
         yield put(Creators.watchPosition())
-        yield put(push('/timestamp'))
         yield put(Creators.startChannel())
+        yield put(push('/timestamp'))
       }
     } else {
       yield put(Creators.registrationRejected("You've entered invalid registration data."))
@@ -53,8 +53,8 @@ export function* submitLogin(): Saga<void> {
       localStorage.setItem('token', res.data.token)
       yield put(Creators.loginApproved(res.data.token))
       yield put(Creators.watchPosition())
-      yield put(push('/timestamp'))
       yield put(Creators.startChannel())
+      yield put(push('/timestamp'))
     } else {
       yield put(Creators.loginRejected("You've entered invalid login data."))
     }
@@ -81,6 +81,7 @@ export function* loadToken(): Saga<void> {
     devLog(res)
     if (res.status === 200) {
       yield put(Creators.loginApproved(token))
+      yield put(Creators.startChannel())      
       yield put(Creators.watchPosition())
       return
     } else if (res.status === 401) {
@@ -91,7 +92,7 @@ export function* loadToken(): Saga<void> {
     // todo: Notify there is a server error (the token isn't deleted)
     yield put(Creators.invalidToken())
   } catch (e) {
-    devLog(e)
+    quietLog(e)
     // The token is invalid/expired
     yield put(Creators.invalidToken())
   }
@@ -99,6 +100,7 @@ export function* loadToken(): Saga<void> {
 
 export function* logout(): Saga<void> {
   localStorage.removeItem('token')
+  yield put(Creators.stopChannel())
   yield put(push('/login'))
 }
 
