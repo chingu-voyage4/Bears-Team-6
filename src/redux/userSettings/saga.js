@@ -11,8 +11,12 @@ export function* watchPosition(): Saga<void> {
   devLog('STARTED WATCH')
   const { isLocationSetManually } = yield select(R.prop('userSettings'))
   if (!isLocationSetManually) {
-    const res = yield call(axios.get, 'http://freegeoip.net/json/')
-    yield put(Creators.setGeoposition(res.data.latitude, res.data.longitude))
+    try {
+      const res = yield call(axios.get, 'http://freegeoip.net/json/')
+      res.then(yield put(Creators.setGeoposition(res.data.latitude, res.data.longitude)))
+    } catch (e) {
+      devLog(e)
+    }
   } else {
     devLog('location is set manually or no geolocation is presented in browser')
   }
