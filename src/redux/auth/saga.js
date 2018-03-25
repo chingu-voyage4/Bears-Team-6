@@ -98,6 +98,7 @@ export function* loadToken(): Saga<void> {
 }
 
 export function* logout(): Saga<void> {
+  console.log('hey')
   localStorage.removeItem('token')
   yield put(push('/login'))
 }
