@@ -25,23 +25,20 @@ export class Timestamp extends React.PureComponent<Props> {
           <p>Channel status: {channelStatus} (should be on)</p>
           <p>timestamp: {this.props.ts}</p>
         </div>
-      </div>)
+      </div>
+    )
   }
 }
 
-const mapStateToProps = ({
-  timestamp: { ts },
-  websocketProvider: {
-    serverStatus, channelStatus,
-  },
-}) => ({ ts, serverStatus, channelStatus })
+const mapStateToProps = ({ timestamp: { ts }, websocketProvider: { serverStatus, channelStatus } }) => ({
+  ts,
+  serverStatus,
+  channelStatus,
+})
 
 const mapDispatchToProps = (dispatch) => {
   const { startChannel, subscribeTimestamp } = Creators
-  return bindActionCreators(
-    { startChannel, subscribeTimestamp },
-    dispatch,
-  )
+  return bindActionCreators({ startChannel, subscribeTimestamp }, dispatch)
 }
 
 export const connected = connect(mapStateToProps, mapDispatchToProps)(Timestamp)

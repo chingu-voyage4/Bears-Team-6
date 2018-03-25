@@ -57,7 +57,8 @@ export const Creators = {
   serverOff,
 }
 
-export type Action = StartChannelAction
+export type Action =
+  | StartChannelAction
   | StopChannelAction
   | ChannelOnAction
   | ChannelOffAction

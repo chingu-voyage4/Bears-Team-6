@@ -14,7 +14,7 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 
 // local
-import App from './App'
+import App from './app'
 import { reducers, sagas } from './redux'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -22,6 +22,7 @@ const history = createHistory()
 const historyMiddleware = routerMiddleware(history)
 
 /* eslint-disable no-underscore-dangle */
+// $ItWorksFineButFlowIsAnIdiot: we know that it works.
 const store = createStore(
   reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

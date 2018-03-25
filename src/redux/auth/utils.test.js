@@ -4,8 +4,11 @@ import { isValidEmail, isValidPassword } from './utils'
 
 describe('isValidEmail', () => {
   it('should reject non-strings', () => {
+    // $ValidationTest
     expect(isValidEmail(2)).toBe(false)
+    // $ValidationTest
     expect(isValidEmail(null)).toBe(false)
+    // $ValidationTest
     expect(isValidEmail(undefined)).toBe(false)
   })
 
@@ -28,8 +31,11 @@ describe('isValidEmail', () => {
 
 describe('isValidPassword', () => {
   it('should reject non-strings', () => {
-    expect(isValidPassword(2)).toBe(false)
+    // $ValidationTest
+    expect(isValidPassword(2)).toBe(false) //eslint-disable-line 
+    // $ValidationTest
     expect(isValidPassword(null)).toBe(false)
+    // $ValidationTest
     expect(isValidPassword(undefined)).toBe(false)
   })
 

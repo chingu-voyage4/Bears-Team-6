@@ -1,3 +1,3 @@
 // @flow
 
-export { UserSettings } from './UserSettings'
+export { connected as UserSettings } from './UserSettings'
