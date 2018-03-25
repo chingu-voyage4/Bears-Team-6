@@ -22,7 +22,16 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <nav>
-        <ul>
+        <ul
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+              "listStyle": "none",
+              "width": 300,
+            }
+          }
+        >
           <li>
             <Link
               replace={false}
@@ -41,12 +50,6 @@ ShallowWrapper {
           </li>
         </ul>
       </nav>,
-      "className": Object {
-        "display": "flex",
-        "justifyContent": "space-between",
-        "listStyle": "none",
-        "width": 300,
-      },
     },
     "ref": null,
     "rendered": Object {
@@ -54,7 +57,16 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": <ul>
+        "children": <ul
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+              "listStyle": "none",
+              "width": 300,
+            }
+          }
+        >
           <li>
             <Link
               replace={false}
@@ -97,6 +109,12 @@ ShallowWrapper {
               </Link>
             </li>,
           ],
+          "style": Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "listStyle": "none",
+            "width": 300,
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -170,7 +188,16 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <nav>
-          <ul>
+          <ul
+            style={
+              Object {
+                "display": "flex",
+                "justifyContent": "space-between",
+                "listStyle": "none",
+                "width": 300,
+              }
+            }
+          >
             <li>
               <Link
                 replace={false}
@@ -189,12 +216,6 @@ ShallowWrapper {
             </li>
           </ul>
         </nav>,
-        "className": Object {
-          "display": "flex",
-          "justifyContent": "space-between",
-          "listStyle": "none",
-          "width": 300,
-        },
       },
       "ref": null,
       "rendered": Object {
@@ -202,7 +223,16 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <ul>
+          "children": <ul
+            style={
+              Object {
+                "display": "flex",
+                "justifyContent": "space-between",
+                "listStyle": "none",
+                "width": 300,
+              }
+            }
+          >
             <li>
               <Link
                 replace={false}
@@ -245,6 +275,12 @@ ShallowWrapper {
                 </Link>
               </li>,
             ],
+            "style": Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+              "listStyle": "none",
+              "width": 300,
+            },
           },
           "ref": null,
           "rendered": Array [
