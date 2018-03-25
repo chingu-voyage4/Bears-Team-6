@@ -41,7 +41,7 @@ const Routes = (props) => {
         <MakeRoutes
           exact path="/"
           authRoute
-          component={UserSettings}
+          component={Timestamp}
           isAuthenticated={isAuthenticated}
         />
         <MakeRoutes
@@ -85,4 +85,5 @@ const mapStateToProps = (state) => ({
   isLoading: state.auth.isLoading,
 })
 
+// $ItWorksFineButFlowIsAnIdiot
 export const connected = connect(mapStateToProps, null, null, { pure: false })(Routes)
