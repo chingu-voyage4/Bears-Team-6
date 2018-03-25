@@ -97,10 +97,16 @@ export function* loadToken(): Saga<void> {
   }
 }
 
+export function* logout(): Saga<void> {
+  localStorage.removeItem('token')
+  yield put(push('/login'))
+}
+
 // todo: validate email server on the fly when changing email
 
 export const auth = [
   takeLatest(ActionTypes.SUBMIT_REGISTRATION, submitRegistration),
   takeLatest(ActionTypes.SUBMIT_LOGIN, submitLogin),
   takeLatest(ActionTypes.LOAD_TOKEN, loadToken),
+  takeLatest(ActionTypes.LOGOUT, logout),
 ]
