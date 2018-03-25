@@ -12,6 +12,7 @@ export const Types = {
   LOGIN_APPROVED: 'LOGIN_APPROVED',
   LOAD_TOKEN: 'LOAD_TOKEN',
   INVALID_TOKEN: 'INVALID_TOKEN',
+  LOGOUT: 'LOGOUT',
 }
 
 export type SET_FULL_NAME = {
@@ -105,6 +106,10 @@ const invalidToken = (): INVALID_TOKEN => ({
   type: Types.INVALID_TOKEN,
 })
 
+const logout = () => ({
+  type: Types.LOGOUT,
+})
+
 export const Creators = {
   setFullName,
   setEmail,
@@ -117,6 +122,7 @@ export const Creators = {
   loginApproved,
   loadToken,
   invalidToken,
+  logout,
 }
 
 export type Action =
