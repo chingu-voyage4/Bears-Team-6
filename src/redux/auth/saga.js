@@ -81,7 +81,7 @@ export function* loadToken(): Saga<void> {
     devLog(res)
     if (res.status === 200) {
       yield put(Creators.loginApproved(token))
-      yield put(Creators.startChannel())      
+      yield put(Creators.startChannel())
       yield put(Creators.watchPosition())
       return
     } else if (res.status === 401) {

@@ -11,40 +11,34 @@ export const Types = {
   SERVER_OFF: 'SERVER_OFF',
 }
 
-export type StartChannelAction = { type: 'START_CHANNEL' }
-
-const startChannel = (): StartChannelAction => ({
+export type START_CHANNEL = { type: 'START_CHANNEL' }
+const startChannel = (): START_CHANNEL => ({
   type: Types.START_CHANNEL,
 })
 
-export type StopChannelAction = { type: 'STOP_CHANNEL' }
-
-const stopChannel = (): StopChannelAction => ({
+export type STOP_CHANNEL = { type: 'STOP_CHANNEL' }
+const stopChannel = (): STOP_CHANNEL => ({
   type: Types.STOP_CHANNEL,
 })
 
-export type ChannelOnAction = { type: 'CHANNEL_ON' }
-
-const channelOn = (): ChannelOnAction => ({
+export type CHANNEL_ON = { type: 'CHANNEL_ON' }
+const channelOn = (): CHANNEL_ON => ({
   type: Types.CHANNEL_ON,
 })
 
-export type ChannelOffAction = { type: 'CHANNEL_OFF' }
-
-const channelOff = (): ChannelOffAction => ({
+export type CHANNEL_OFF = { type: 'CHANNEL_OFF' }
+const channelOff = (): CHANNEL_OFF => ({
   type: Types.CHANNEL_OFF,
 })
 
-export type ServerOnAction = { type: 'SERVER_ON' }
-
-const serverOn = (socket: Socket): ServerOnAction => ({
+export type SERVER_ON = { type: 'SERVER_ON', socket: Socket }
+const serverOn = (socket: Socket): SERVER_ON => ({
   type: Types.SERVER_ON,
   socket,
 })
 
-export type ServerOffAction = { type: 'SERVER_OFF' }
-
-const serverOff = (): ServerOffAction => ({
+export type SERVER_OFF = { type: 'SERVER_OFF' }
+const serverOff = (): SERVER_OFF => ({
   type: Types.SERVER_OFF,
 })
 
@@ -58,9 +52,9 @@ export const Creators = {
 }
 
 export type Action =
-  | StartChannelAction
-  | StopChannelAction
-  | ChannelOnAction
-  | ChannelOffAction
-  | ServerOnAction
-  | ServerOffAction
+  | START_CHANNEL
+  | STOP_CHANNEL
+  | CHANNEL_ON
+  | CHANNEL_OFF
+  | SERVER_ON
+  | SERVER_OFF

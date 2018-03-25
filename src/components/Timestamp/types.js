@@ -1,11 +1,11 @@
 // @flow
 
-import type { StartChannelAction } from '../../redux/websocketProvider/actions'
-import type { SubscribeTimestampAction } from '../../redux/timestamp/actions'
+import type { START_CHANNEL } from '../../redux/websocketProvider/actions'
+import type { SUBSCRIBE_TIMESTAMP } from '../../redux/timestamp/actions'
 
 export type Props = {
-  startChannel: (void) => StartChannelAction,
-  subscribeTimestamp: (void) => SubscribeTimestampAction,
+  startChannel: (void) => START_CHANNEL,
+  subscribeTimestamp: (void) => SUBSCRIBE_TIMESTAMP,
   ts: number,
   serverStatus: string,
   channelStatus: string,
