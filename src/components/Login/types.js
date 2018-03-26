@@ -1,10 +1,11 @@
 // @flow
 
+import type { SET_EMAIL, SET_PASSWORD, SUBMIT_LOGIN } from '../../redux/auth/actions'
+
 export type Props = {
-  setFullName: (string) => void,
-  setEmail: (string) => void,
-  setPassword: (string) => void,
-  submitLogin: (string) => void,
+  setEmail: (string) => SET_EMAIL,
+  setPassword: (string) => SET_PASSWORD,
+  submitLogin: (string) => SUBMIT_LOGIN,
   fullName: string,
   email: string,
   password: string,

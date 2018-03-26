@@ -3,5 +3,6 @@
   "prettier.singleQuote": true,
   "prettier.arrowParens": "always",
   "prettier.eslintIntegration": true,
-  "prettier.requireConfig": false
+  "prettier.requireConfig": false,
+  "prettier.stylelintIntegration": true
 }

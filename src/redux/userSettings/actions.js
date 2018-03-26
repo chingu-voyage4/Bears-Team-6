@@ -7,30 +7,29 @@ export const Types = {
 }
 export type SET_GEOPOSITION = {
   type: 'SET_GEOPOSITION',
-  lat: number,
-  lng: number,
+  latitude: number,
+  longitude: number,
 }
-
-const setGeoposition = (lat: number, lng: number): SET_GEOPOSITION => ({
+const setGeoposition = (latitude: number, longitude: number): SET_GEOPOSITION => ({
   type: Types.SET_GEOPOSITION,
-  lat,
-  lng,
+  latitude,
+  longitude,
 })
+
 export type SET_GEOPOSITION_MANUAL = {
   type: 'SET_GEOPOSITION_MANUAL',
-  lat: number,
-  lng: number,
+  latitude: number,
+  longitude: number,
 }
-
-const setGeopositionManual = (lat: number, lng: number): SET_GEOPOSITION_MANUAL => ({
+const setGeopositionManual = (latitude: number, longitude: number): SET_GEOPOSITION_MANUAL => ({
   type: Types.SET_GEOPOSITION_MANUAL,
-  lat,
-  lng,
+  latitude,
+  longitude,
 })
+
 export type WATCH_POSITION = {
   type: 'WATCH_POSITION',
 }
-
 const watchPosition = (): WATCH_POSITION => ({
   type: Types.WATCH_POSITION,
 })

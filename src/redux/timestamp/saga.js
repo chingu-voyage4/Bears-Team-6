@@ -6,6 +6,7 @@ import type { Saga, Socket, Channel } from '../../types'
 import { ActionTypes, Creators } from '..'
 import { quietLog } from '../../utils'
 import { isValidTimestamp } from './utils'
+import type { SERVER_ON } from '../websocketProvider/actions'
 
 /**
  * Subscribe for socket.io event
@@ -37,7 +38,7 @@ export function* listenTimestampUpdate(socket: Socket): Saga<void> {
 /**
  * Race between infinite loops and stoping conditions
  */
-export function* workWithTimestamps({ socket }: { socket: Socket }): Saga<void> {
+export function* workWithTimestamps({ socket }: SERVER_ON): Saga<void> {
   try {
     while (true) {
       const isSubscribed = yield select((state) => state.timestamp.isSubscribed)

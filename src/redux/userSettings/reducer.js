@@ -4,23 +4,23 @@ import { ActionTypes } from '..'
 import type { Action } from './actions'
 
 type State = {
-  lat: number,
-  lng: number,
+  latitude: number,
+  longitude: number,
   isLocationSetManually: boolean,
 }
 
 const initialState: State = {
-  lat: 35.652832,
-  lng: 139.839478,
+  latitude: 35.652832,
+  longitude: 139.839478,
   isLocationSetManually: false,
 }
 
-const setGeoposition = (state, { lat, lng }) => ({ ...state, lat, lng })
+const setGeoposition = (state, { latitude, longitude }) => ({ ...state, latitude, longitude })
 
-const setGeopositionManual = (state, { lat, lng }) => ({
+const setGeopositionManual = (state, { latitude, longitude }) => ({
   ...state,
-  lat,
-  lng,
+  latitude,
+  longitude,
   setGeopositionManual: true,
 })
 

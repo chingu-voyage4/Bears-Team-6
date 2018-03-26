@@ -65,6 +65,19 @@ function* listenConnectSaga(socket: Socket): Saga<void> {
 }
 
 /**
+ * Used in case of logout
+ */
+function* stopChannelSaga(socket: Socket): Saga<void> {
+  yield take(ActionTypes.STOP_CHANNEL)
+  try {
+    socket.close()
+  } catch (e) {
+    quietLog(e) // TODO: find why it works but at the same time thors an error
+  }
+  yield put(Creators.serverOff())
+}
+
+/**
  * Creates several "loops", that listen to channel events
  * Last one is working only if channel and server are working
  */
@@ -93,4 +106,7 @@ export function* startChannel(): Saga<void> {
   })
 }
 
-export const websocketProvider = [takeLatest(ActionTypes.START_CHANNEL, startChannel)]
+export const websocketProvider = [
+  takeLatest(ActionTypes.START_CHANNEL, startChannel),
+  takeLatest(ActionTypes.SERVER_ON, stopChannelSaga),
+]

@@ -7,7 +7,7 @@ import { Creators } from '../../redux'
 
 export class UserSettings extends React.Component<*> {
   render() {
-    const { lat, lng, setGeopositionManual } = this.props
+    const { latitude, longitude, setGeopositionManual } = this.props
     return (
       <div>
         <Helmet>
@@ -18,8 +18,8 @@ export class UserSettings extends React.Component<*> {
           zoom={12}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '400px' }} />}
-          defaultPosition={{ lat, lng }}
-          onChange={({ position: { lat, lng } }) => setGeopositionManual(lat, lng)}
+          defaultPosition={{ lat: latitude, lng: longitude }}
+          onChange={({ position: { lat: latitude, lng: longitude } }) => setGeopositionManual(latitude, longitude)}
         />
         <h3>interests here</h3>
       </div>
@@ -27,7 +27,7 @@ export class UserSettings extends React.Component<*> {
   }
 }
 
-const mapStateToProps = ({ userSettings: { lat, lng } }) => ({ lat, lng })
+const mapStateToProps = ({ userSettings: { latitude, longitude } }) => ({ latitude, longitude })
 
 const mapDispatchToProps = (dispatch) => {
   const { setGeopositionManual, watchPosition } = Creators

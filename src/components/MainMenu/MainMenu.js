@@ -4,12 +4,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import type { Props } from './types'
-// $IgnoreStylesheets
-import styles from './styles.scss'
+import * as styles from './styles'
 
 const allPaths = {
-  authorizedPaths:
-  [
+  authorizedPaths: [
     <li key="/usersettings">
       <Link to="/usersettings">User Settings</Link>
     </li>,
@@ -20,8 +18,7 @@ const allPaths = {
       <Link to="/logout">Logout</Link>
     </li>,
   ],
-  unauthorizedPaths:
-  [
+  unauthorizedPaths: [
     <li key="/registration">
       <Link to="/registration">Registration</Link>
     </li>,
@@ -31,16 +28,14 @@ const allPaths = {
   ],
 }
 
-export class MainMenu extends React.Component<Props> {
+class MainMenu extends React.Component<Props> {
   render() {
     const { isAuthenticated, isLoading } = this.props
     const currentPath = allPaths[`${isAuthenticated ? 'authorizedPaths' : 'unauthorizedPaths'}`]
     return (
-      <header className={styles.root}>
+      <header>
         <nav>
-          <ul>
-            {!isLoading && currentPath.map((li) => li)}
-          </ul>
+          <ul style={styles.horizontalList}>{!isLoading && currentPath.map((li) => li)}</ul>
         </nav>
       </header>
     )
