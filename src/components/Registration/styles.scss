@@ -1,18 +1,58 @@
 .error {
   color: orangered;
+  font-family: 'Roboto', sans-serif;
   padding: 10px 0;
 }
 
 .registration {
   display: flex;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
-.registration label {
-  display: flex;
-  justify-content: space-between;
+.formgroup {
+  color: black;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 10px;
-  width: 270px;
+}
+
+.formgroup * {
+  color: black;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
+  min-width: 270px;
+}
+
+.formgroup .label {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 8;
+  margin: 0;  
+  font-weight: 400;
+}
+
+.formgroup input {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 8;
+  margin: 0;  
+  border-radius: 3px;
+  border: 1px solid #bbbbbb;
+  height: 2em;
+  padding: .1em;
+  font-weight: 400;
+}
+
+.formgroup .hint {
+  color: #999;
+  font-family: 'Roboto', sans-serif;
+  font-size: .8em;
+  margin: 0;
+  font-weight: 400;
 }
 
 .registration button {

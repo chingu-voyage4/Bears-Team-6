@@ -7,6 +7,11 @@ import { MainMenu } from './components/MainMenu'
 import { Routes } from './components/Routes'
 import { Creators } from './redux'
 
+const style = {
+  fontFamily: 'Roboto',
+  padding: '20px',
+}
+
 class App extends React.Component<Props> {
   // Checks if there is a token
   componentWillMount() {
@@ -15,7 +20,8 @@ class App extends React.Component<Props> {
 
   render() {
     return (
-      <div>
+      <div style={style}>
+        <h1>We are your team</h1>
         <Helmet titleTemplate="%s - We Are Your Team" defaultTitle="Welcome" />
         <MainMenu />
         <Routes />

@@ -24,21 +24,31 @@ export const Registration = ({
     <Helmet>
       <title>Registration</title>
     </Helmet>
+    <h2>Registration</h2>
     <span className={styles.error}>{errorMessage}</span>
-    <label>
-      Full Name (2 or longer)
+    <div className={styles.formgroup}>
+      <p className={styles.label}>Full Name</p>
       <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isLoading} />
-    </label>
-    <label>
-      Email
+      <p className={styles.hint}>At least 2 characters. May be visible for many people.</p>
+    </div>
+    <div className={styles.formgroup}>
+      <p className={styles.label}>E-mail </p>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
-    </label>
-    <label>
-      Password (10 or longer)
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
-    </label>
+      <p className={styles.hint}>Will not be shown to anyone. Will be used only for registration and notifications.</p>
+    </div>
+    <div className={styles.formgroup}>
+      <p className={styles.label}>Password</p>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter password"
+        disabled={isLoading}
+      />
+      <p className={styles.hint}>... at least 10 characters</p>
+    </div>
     <button onClick={submitRegistration} disabled={isLoading}>
-      submit
+      Submit
     </button>
   </div>
 )
