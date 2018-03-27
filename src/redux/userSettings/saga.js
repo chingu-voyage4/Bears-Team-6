@@ -6,7 +6,7 @@ import { takeLatest, call, select, put } from 'redux-saga/effects'
 import config from '../../../application.config'
 import type { Saga } from '../../types'
 import { ActionTypes, Creators } from '..'
-import { quietLog } from '../../utils'
+import { devLog, quietLog } from '../../utils'
 import type { SET_GEOPOSITION_MANUAL } from './actions'
 
 /**
@@ -35,6 +35,11 @@ export function* watchPosition(): Saga<void> {
       const res = yield call(axios.get, 'http://freegeoip.net/json/')
       const { latitude, longitude } = res.data
       yield put(Creators.setGeoposition(latitude, longitude))
+      /*
+      * Not sure yet where to place it
+      */
+      const interests = yield call(axios.get, `${host}/api/interests`, authConfig)
+      devLog(interests.data)
     }
   } catch (e) {
     quietLog(e)
@@ -55,8 +60,23 @@ export function* saveGeopositionOnBackend({ latitude, longitude }: SET_GEOPOSITI
         latitude,
         longitude,
       },
+      interests: [
+        {
+          _id: '5aba4cd9cdff1f1354fbba2a',
+          wantsToBeLeader: true,
+        },
+        {
+          _id: '5aba4cd9cdff1f1354fbba2b',
+          wantsToBeLeader: false,
+        },
+        {
+          _id: '5aba4cd9cdff1f1354fbba2d',
+          wantsToBeLeader: true,
+        },
+      ],
     }
-    yield call(axios.put, `${host}/api/users/profile`, reqBody, authConfig)
+
+    // yield call(axios.put, `${host}/api/users/profile`, reqBody, authConfig)
   } catch (e) {
     quietLog(e)
   }
