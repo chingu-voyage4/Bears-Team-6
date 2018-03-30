@@ -16,6 +16,7 @@ export const Login = ({
     <Helmet>
       <title>Login</title>
     </Helmet>
+    <h2>Login</h2>
     <span className={styles.error}>{errorMessage}</span>
     <label>
       Email
