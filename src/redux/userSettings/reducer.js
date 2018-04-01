@@ -7,12 +7,14 @@ type State = {
   latitude: number,
   longitude: number,
   isLocationSetManually: boolean,
+  interests: Array<Object>,
 }
 
 const initialState: State = {
   latitude: 35.652832,
   longitude: 139.839478,
   isLocationSetManually: false,
+  interests: [],
 }
 
 const setGeoposition = (state, { latitude, longitude }) => ({ ...state, latitude, longitude })

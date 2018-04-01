@@ -77,7 +77,7 @@ export function* loadToken(): Saga<void> {
     const authConfig = { headers: { Authorization: `Bearer ${token}` } }
     // fetches all users
     // should be a different route in the future
-    const res = yield call(axios.get, `${host}/api/users/`, authConfig)
+    const res = yield call(axios.get, `${host}/api/users/profile`, authConfig)
     devLog(res)
     if (res.status === 200) {
       yield put(Creators.loginApproved(token))
