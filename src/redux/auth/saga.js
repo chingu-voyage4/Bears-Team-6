@@ -77,10 +77,23 @@ export function* loadToken(): Saga<void> {
     const authConfig = { headers: { Authorization: `Bearer ${token}` } }
     // fetches all users
     // should be a different route in the future
-    const res = yield call(axios.get, `${host}/api/users/profile`, authConfig)
+    const res = yield call(axios, {
+      method: 'get',
+      url: `${host}/api/users/profile`,
+      // This is to get a readable status and not an error
+      validateStatus: (status) => true,
+      ...authConfig,
+    })
     devLog(res)
     if (res.status === 200) {
+      const {
+        name,
+        email,
+        interests,
+        // meetings, doesn't exist yet
+      } = res.data
       yield put(Creators.loginApproved(token))
+      yield put(Creators.setUserSettings(name, email, interests, []))
       yield put(Creators.startChannel())
       yield put(Creators.watchPosition())
       return

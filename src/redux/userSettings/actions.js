@@ -4,7 +4,7 @@ export const Types = {
   SET_GEOPOSITION: 'SET_GEOPOSITION',
   SET_GEOPOSITION_MANUAL: 'SET_GEOPOSITION_MANUAL',
   WATCH_POSITION: 'WATCH_POSITION',
-  SET_USER_SETTINGS: 'SET_USER_SETTINGS'
+  SET_USER_SETTINGS: 'SET_USER_SETTINGS',
 }
 export type SET_GEOPOSITION = {
   type: 'SET_GEOPOSITION',
@@ -39,16 +39,25 @@ export type SET_USER_SETTINGS = {
   type: 'SET_USER_SETTINGS',
   name: string,
   email: string,
-  interests: Array<Object>
+  interests: Array<Object>,
+  meetings: Array<Object>
 }
 
-const setUserSettings = (name: string, email: string, interests: Array<Object>): SET_USER_SETTINGS => ({
+const setUserSettings = (
+  name: string,
+  email: string,
+  interests: Array<Object>,
+  meetings: Array<Object>,
+): SET_USER_SETTINGS => ({
   type: Types.SET_USER_SETTINGS,
   name,
   email,
   interests,
+  meetings,
 })
 
-export const Creators = { setGeoposition, watchPosition, setGeopositionManual, setUserSettings }
+export const Creators = {
+  setGeoposition, watchPosition, setGeopositionManual, setUserSettings,
+}
 
 export type Action = SET_GEOPOSITION | WATCH_POSITION | SET_GEOPOSITION_MANUAL | SET_USER_SETTINGS
