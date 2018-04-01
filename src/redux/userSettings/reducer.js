@@ -7,12 +7,16 @@ type State = {
   latitude: number,
   longitude: number,
   isLocationSetManually: boolean,
+  interests: Array<Object>,
+  meetings: Array<Object>,
 }
 
 const initialState: State = {
-  latitude: 35.652832,
-  longitude: 139.839478,
+  latitude: 0,
+  longitude: 0,
   isLocationSetManually: false,
+  interests: [],
+  meetings: [],
 }
 
 const setGeoposition = (state, { latitude, longitude }) => ({ ...state, latitude, longitude })
@@ -22,6 +26,13 @@ const setGeopositionManual = (state, { latitude, longitude }) => ({
   latitude,
   longitude,
   setGeopositionManual: true,
+})
+
+const setUserSettings = (state, { name, email, interests }) => ({
+  ...state,
+  name,
+  email,
+  interests,
 })
 
 export const userSettings = (state: State = initialState, action?: Action): State => {
